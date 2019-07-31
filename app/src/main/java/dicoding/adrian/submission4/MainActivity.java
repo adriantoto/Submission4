@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import dicoding.adrian.submission4.Favorite.FavoriteFragment;
 import dicoding.adrian.submission4.Movie.MovieFragment;
 import dicoding.adrian.submission4.TV.TvFragment;
 
@@ -37,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_tv:
                     fragment = new TvFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frame_container, fragment, fragment.getClass().getSimpleName())
+                            .commit();
+                    return true;
+                case R.id.navigation_favorite:
+                    fragment = new FavoriteFragment();
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.frame_container, fragment, fragment.getClass().getSimpleName())
                             .commit();
