@@ -164,16 +164,17 @@
             app:layout_constraintStart_toEndOf="@+id/txt_scoreAngkaDetail"
             app:layout_constraintTop_toTopOf="@+id/view" />
 
-        <com.like.LikeButton
-            android:id="@+id/star_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon_size="25dp"
-            app:icon_type="heart"
-            app:layout_constraintBottom_toBottomOf="@+id/view3"
+        <ImageButton
+            android:id="@+id/btn_favorite"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:background="@drawable/ripple_like_bg"
+            android:src="@drawable/ic_favorite_white_24dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/view2"
-            app:layout_constraintTop_toTopOf="@+id/view2" />
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
 
         <TextView
             android:id="@+id/textView5"

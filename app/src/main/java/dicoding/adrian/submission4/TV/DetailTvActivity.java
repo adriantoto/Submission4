@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -18,8 +19,6 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.like.LikeButton;
-import com.like.OnLikeListener;
 
 import dicoding.adrian.submission4.Movie.DetailMovieActivity;
 import dicoding.adrian.submission4.R;
@@ -36,8 +35,8 @@ public class DetailTvActivity extends AppCompatActivity {
     ImageView posterBanner;
     ImageView posterDetail;
 
-    // Like Button Declaration
-    LikeButton likeButton;
+    // Favorite Button Declaration
+    ImageButton btnFavorite;
 
     // Button Variable Declaration
     ImageButton btnBack;
@@ -69,7 +68,7 @@ public class DetailTvActivity extends AppCompatActivity {
 
         // Casting Button Variables
         btnBack = findViewById(R.id.btn_back_tv);
-        likeButton = findViewById(R.id.star_button_tv);
+        btnFavorite = findViewById(R.id.btn_favorite_tv);
 
         // Progress Bar Declaration
         progressBar = findViewById(R.id.progressBar_detailMovie_tv);
@@ -103,25 +102,20 @@ public class DetailTvActivity extends AppCompatActivity {
                 })
                 .into(posterDetail);
 
-        // setOnClickListener untuk Button Like
-        likeButton.setOnLikeListener(new OnLikeListener() {
-            @Override
-            public void liked(LikeButton likeButton) {
-                Toast.makeText(DetailTvActivity.this, "Like", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void unLiked(LikeButton likeButton) {
-                Toast.makeText(DetailTvActivity.this, "Dislike", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         // setOnClickListener untuk Button Back
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
                 overridePendingTransition(R.anim.no_animation, R.anim.slide_down);
+            }
+        });
+
+        // setOnClickListener untuk Button Favorite
+        btnFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(DetailTvActivity.this, "You fav this tv show", Toast.LENGTH_SHORT).show();
             }
         });
     }

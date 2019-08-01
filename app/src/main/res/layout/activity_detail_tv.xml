@@ -164,16 +164,16 @@
             app:layout_constraintStart_toEndOf="@+id/txt_scoreAngkaDetail_tv"
             app:layout_constraintTop_toTopOf="@+id/view_tv" />
 
-        <com.like.LikeButton
-            android:id="@+id/star_button_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon_size="25dp"
-            app:icon_type="heart"
-            app:layout_constraintBottom_toBottomOf="@+id/view3_tv"
+        <ImageButton
+            android:id="@+id/btn_favorite_tv"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:background="@drawable/ripple_like_bg"
+            android:src="@drawable/ic_favorite_white_24dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView5_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/view2_tv"
-            app:layout_constraintTop_toTopOf="@+id/view2_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/view_tv" />
 
         <TextView
             android:id="@+id/textView5_tv"
