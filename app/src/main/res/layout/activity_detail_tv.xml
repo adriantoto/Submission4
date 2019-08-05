@@ -86,6 +86,41 @@
             app:layout_constraintVertical_bias="0.0"
             tools:text="How To Train Your Dragon: The Hidden World" />
 
+        <Button
+            android:id="@+id/btn_like_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_smile"
+            android:drawablePadding="1dp"
+            android:text="@string/like"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView5_tv"
+            app:layout_constraintEnd_toStartOf="@+id/view2_tv"
+            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_tv"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btn_dislike_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_sad"
+            android:drawablePadding="1dp"
+            android:text="@string/dislike"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/view3_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view2_tv"
+            app:layout_constraintTop_toBottomOf="@+id/view_tv"
+            app:layout_constraintVertical_bias="0.0" />
+
         <View
             android:id="@+id/view_tv"
             android:layout_width="match_parent"
@@ -122,58 +157,39 @@
             app:layout_constraintTop_toBottomOf="@+id/view2_tv"
             app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
-            android:id="@+id/imageView_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_star"
-            app:layout_constraintBottom_toBottomOf="@+id/view2_tv"
-            app:layout_constraintEnd_toStartOf="@+id/txt_scoreAngkaDetail_tv"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/view2_tv" />
-
         <TextView
             android:id="@+id/txt_scoreAngkaDetail_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="1dp"
             android:textColor="@color/duskYellow"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/view3_tv"
-            app:layout_constraintEnd_toStartOf="@+id/view2_tv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/view_tv"
+            app:layout_constraintBottom_toTopOf="@+id/view_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/cardviewPosterDetail_tv"
+            app:layout_constraintTop_toBottomOf="@+id/txt_title_detail_tv"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="75" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="16dp"
             android:text="@string/percent"
             android:textColor="@color/duskYellow"
             android:textSize="25sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/view3_tv"
-            app:layout_constraintEnd_toStartOf="@+id/view2_tv"
+            app:layout_constraintBottom_toTopOf="@+id/view_tv"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/txt_scoreAngkaDetail_tv"
-            app:layout_constraintTop_toTopOf="@+id/view_tv" />
-
-        <ImageButton
-            android:id="@+id/btn_favorite_tv"
-            android:layout_width="50dp"
-            android:layout_height="35dp"
-            android:background="@drawable/ripple_like_bg"
-            android:src="@drawable/ic_favorite_white_24dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView5_tv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/view2_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_title_detail_tv"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView5_tv"

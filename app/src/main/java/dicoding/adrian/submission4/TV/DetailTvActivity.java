@@ -36,7 +36,8 @@ public class DetailTvActivity extends AppCompatActivity {
     ImageView posterDetail;
 
     // Favorite Button Declaration
-    ImageButton btnFavorite;
+    Button btnLike;
+    Button btnDislike;
 
     // Button Variable Declaration
     ImageButton btnBack;
@@ -68,7 +69,8 @@ public class DetailTvActivity extends AppCompatActivity {
 
         // Casting Button Variables
         btnBack = findViewById(R.id.btn_back_tv);
-        btnFavorite = findViewById(R.id.btn_favorite_tv);
+        btnLike = findViewById(R.id.btn_like_tv);
+        btnDislike = findViewById(R.id.btn_dislike_tv);
 
         // Progress Bar Declaration
         progressBar = findViewById(R.id.progressBar_detailMovie_tv);
@@ -111,11 +113,19 @@ public class DetailTvActivity extends AppCompatActivity {
             }
         });
 
-        // setOnClickListener untuk Button Favorite
-        btnFavorite.setOnClickListener(new View.OnClickListener() {
+        // setOnClickListener untuk Button Like
+        btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DetailTvActivity.this, "You fav this tv show", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailTvActivity.this, "Like", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // setOnClickListener untuk Button Dislike
+        btnDislike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(DetailTvActivity.this, "Dislike", Toast.LENGTH_SHORT).show();
             }
         });
     }

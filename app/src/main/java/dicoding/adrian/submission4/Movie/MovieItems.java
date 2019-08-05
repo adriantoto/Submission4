@@ -34,6 +34,26 @@ public class MovieItems implements Parcelable {
         }
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setReleased(String released) {
+        this.released = released;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
     public int getId() {
         return id;
     }
@@ -42,7 +62,7 @@ public class MovieItems implements Parcelable {
         this.id = id;
     }
 
-    String getTitle() {
+    public String getTitle() {
         return title;
     }
 
@@ -50,11 +70,11 @@ public class MovieItems implements Parcelable {
         return released;
     }
 
-    String getOverview() {
+    public String getOverview() {
         return overview;
     }
 
-    String getPoster() {
+    public String getPoster() {
         return poster;
     }
 
@@ -75,6 +95,9 @@ public class MovieItems implements Parcelable {
         dest.writeString(this.overview);
         dest.writeString(this.poster);
         dest.writeDouble(this.score);
+    }
+
+    public MovieItems() {
     }
 
     private MovieItems(Parcel in) {

@@ -13,4 +13,6 @@
     <string name="search">Cari</string>
     <string name="change_language_settings">Ubah Pengaturan Bahasa</string>
     <string name="favorite">Kesukaan</string>
+    <string name="like">Suka</string>
+    <string name="dislike">Benci</string>
 </resources>
