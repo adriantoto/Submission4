@@ -6,7 +6,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -21,6 +23,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import dicoding.adrian.submission4.Favorite.FavoriteFragment;
 import dicoding.adrian.submission4.Favorite.MovieFavorite.Adapter.MovieFavoriteAdapter;
 import dicoding.adrian.submission4.Favorite.MovieFavorite.Database.MovieHelper;
 import dicoding.adrian.submission4.Movie.DetailMovieActivity;
@@ -33,7 +36,7 @@ import dicoding.adrian.submission4.R;
  */
 public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallback {
 
-    // Widgets, Array, Adapter, Helper Variable Decalaration
+    // Widgets, Array, Adapter, Helper Variable Declaration
     RecyclerView rvFavoriteMovies;
     ArrayList<MovieItems> movieItems;
     MovieFavoriteAdapter adapter;
@@ -166,9 +169,13 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
                     adapter.addItem(movieItems);
                     rvFavoriteMovies.smoothScrollToPosition(adapter.getItemCount() - 1);
                 }
+            } else if (requestCode == DetailMovieFavoriteActivity.REQUEST_UPDATE) {
+                if (resultCode == DetailMovieFavoriteActivity.RESULT_DELETE) {
+                    int position = data.getIntExtra(DetailMovieFavoriteActivity.EXTRA_POSITION, 0);
+                    adapter.removeItem(position);
+                }
             }
         }
-
     }
 
     @Override
@@ -176,5 +183,4 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
         super.onDestroyView();
         movieHelper.close();
     }
-
 }

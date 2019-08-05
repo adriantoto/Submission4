@@ -1,9 +1,11 @@
 package dicoding.adrian.submission4.Favorite.MovieFavorite.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,6 +23,9 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
+import dicoding.adrian.submission4.CustomOnItemClickListener;
+import dicoding.adrian.submission4.Favorite.MovieFavorite.DetailMovieFavoriteActivity;
+import dicoding.adrian.submission4.Movie.DetailMovieActivity;
 import dicoding.adrian.submission4.Movie.MovieItems;
 import dicoding.adrian.submission4.R;
 
@@ -60,6 +65,8 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
         this.listMovies.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, listMovies.size());
+        //notifyDataSetChanged();
+        notifyItemChanged(position);
     }
 
     @NonNull
@@ -89,6 +96,15 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
                     }
                 })
                 .into(holder.ivPoster);
+        holder.itemFavoriteMovie.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback() {
+            @Override
+            public void onItemClicked(View view, int position) {
+                Intent intent = new Intent(activity, DetailMovieFavoriteActivity.class);
+                intent.putExtra(DetailMovieFavoriteActivity.EXTRA_POSITION, position);
+                intent.putExtra(DetailMovieFavoriteActivity.EXTRA_MOVIE, listMovies.get(position));
+                activity.startActivityForResult(intent, DetailMovieFavoriteActivity.REQUEST_UPDATE);
+            }
+        }));
     }
 
     @Override
@@ -96,10 +112,16 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
         return listMovies.size();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
+
     public class MovieFavoriteViewHolder extends RecyclerView.ViewHolder {
         final TextView tvTitle, tvOverview;
         final ImageView ivPoster;
         final ProgressBar pgMovie;
+        final ConstraintLayout itemFavoriteMovie;
 
         MovieFavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -107,6 +129,7 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
             tvOverview = itemView.findViewById(R.id.tv_item_overview_favorite_movie);
             ivPoster = itemView.findViewById(R.id.img_item_poster_favorite_movie);
             pgMovie = itemView.findViewById(R.id.progressBar_item_favorite_movie);
+            itemFavoriteMovie = itemView.findViewById(R.id.cv_item_favorite_movie);
         }
     }
 }

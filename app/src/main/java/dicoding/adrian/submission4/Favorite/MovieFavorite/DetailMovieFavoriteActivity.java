@@ -1,10 +1,9 @@
-package dicoding.adrian.submission4.Movie;
+package dicoding.adrian.submission4.Favorite.MovieFavorite;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,18 +21,17 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
-import dicoding.adrian.submission4.Favorite.MovieFavorite.Database.DatabaseHelper;
 import dicoding.adrian.submission4.Favorite.MovieFavorite.Database.MovieHelper;
+import dicoding.adrian.submission4.Movie.MovieAdapter;
+import dicoding.adrian.submission4.Movie.MovieItems;
 import dicoding.adrian.submission4.R;
 
-public class DetailMovieActivity extends AppCompatActivity {
+public class DetailMovieFavoriteActivity extends AppCompatActivity {
 
     // Default Keys Values
-    public static final int REQUEST_ADD = 100;
-    public static final int RESULT_ADD = 101;
     public static final int REQUEST_UPDATE = 200;
-    public static final int RESULT_UPDATE = 201;
     public static final int RESULT_DELETE = 301;
+    public static final int RESULT_UPDATE = 201;
 
     // isEdit Declaration
     private boolean isEdit = false;
@@ -57,10 +55,8 @@ public class DetailMovieActivity extends AppCompatActivity {
     // Widget Variables Declaration
     TextView txtTitleDetail;
     TextView txtOverviewDetail;
-    TextView txtScoreAngkaDetail;
     ImageView posterBanner;
     ImageView posterDetail;
-    Button btnLike;
     Button btnDislike;
     ImageButton btnBack;
     ProgressBar progressBar;
@@ -68,7 +64,7 @@ public class DetailMovieActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_movie);
+        setContentView(R.layout.activity_detail_movie_favorite);
 
         // Movie Helper Instance
         movieHelper = MovieHelper.getInstance(getApplicationContext());
@@ -79,7 +75,7 @@ public class DetailMovieActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         // TextView Layout Gradient
-        TextView myBackground = findViewById(R.id.textView5);
+        TextView myBackground = findViewById(R.id.textView5_movie_favorite);
         AnimationDrawable animationDrawable = (AnimationDrawable) myBackground.getBackground();
         animationDrawable.setEnterFadeDuration(2000);
         animationDrawable.setExitFadeDuration(4000);
@@ -89,18 +85,17 @@ public class DetailMovieActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         // Casting Data Variables
-        txtTitleDetail = findViewById(R.id.txt_title_detail);
-        txtOverviewDetail = findViewById(R.id.txt_overviewDetail);
-        txtScoreAngkaDetail = findViewById(R.id.txt_scoreAngkaDetail);
-        posterBanner = findViewById(R.id.poster_banner);
-        posterDetail = findViewById(R.id.poster_detail);
+        txtTitleDetail = findViewById(R.id.txt_title_detail_movie_favorite);
+        txtOverviewDetail = findViewById(R.id.txt_overviewDetail_movie_favorite);
+        posterBanner = findViewById(R.id.poster_banner_movie_favorite);
+        posterDetail = findViewById(R.id.poster_detail_movie_favorite);
 
         // Casting Button Variables
-        btnBack = findViewById(R.id.btn_back);
-        btnLike = findViewById(R.id.btn_like_movie);
+        btnBack = findViewById(R.id.btn_back_movie_favorite);
+        btnDislike = findViewById(R.id.btn_dislike_movie_favorite);
 
         // Progress Bar Declaration
-        progressBar = findViewById(R.id.progressBar_detailMovie);
+        progressBar = findViewById(R.id.progressBar_detailMovie_movie_favorite);
         progressBar.bringToFront();
 
         // Menerima Intent Movie dan Positon
@@ -113,13 +108,11 @@ public class DetailMovieActivity extends AppCompatActivity {
         // Mengisi data String
         txtTitleDetail.setText(movie.getTitle());
         txtOverviewDetail.setText(movie.getOverview());
-        double score = movie.getScore() * 10;
-        txtScoreAngkaDetail.setText(String.valueOf((int) score));
 
         // Mengisi data image
         String url = "https://image.tmdb.org/t/p/original" + movie.getPoster();
-        Glide.with(DetailMovieActivity.this).load(url).into(posterBanner);
-        Glide.with(DetailMovieActivity.this)
+        Glide.with(DetailMovieFavoriteActivity.this).load(url).into(posterBanner);
+        Glide.with(DetailMovieFavoriteActivity.this)
                 .load(url)
                 .listener(new RequestListener<Drawable>() {
                     @Override
@@ -144,20 +137,19 @@ public class DetailMovieActivity extends AppCompatActivity {
             }
         });
 
-        // setOnClickListener untuk Button Like
-        btnLike.setOnClickListener(new View.OnClickListener() {
+        // setOnClickListener untuk Button Dislike
+        btnDislike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra(EXTRA_MOVIE, movie);
-                intent.putExtra(EXTRA_POSITION, position);
-                if (isEdit) {
-                    Toast.makeText(DetailMovieActivity.this, "You already liked", Toast.LENGTH_SHORT).show();
+                long result = movieHelper.deleteMovie(movie.getId());
+                if (result > 0) {
+                    Intent intent = new Intent();
+                    intent.putExtra(EXTRA_POSITION, position);
+                    setResult(RESULT_DELETE, intent);
+                    finish();
+                    Toast.makeText(DetailMovieFavoriteActivity.this, "Dislike", Toast.LENGTH_SHORT).show();
                 } else {
-                    long result = movieHelper.insertMovie(movie);
-                    movie.setId((int) result);
-                    setResult(RESULT_ADD, intent);
-                    Toast.makeText(DetailMovieActivity.this, "Like", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailMovieFavoriteActivity.this, "Dislike Failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -172,6 +164,6 @@ public class DetailMovieActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        DetailMovieActivity.this.overridePendingTransition(R.anim.no_animation, R.anim.slide_down);
+        DetailMovieFavoriteActivity.this.overridePendingTransition(R.anim.no_animation, R.anim.slide_down);
     }
 }

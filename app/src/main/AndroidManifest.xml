@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Favorite.MovieFavorite.DetailMovieFavoriteActivity"></activity>
         <activity android:name=".TV.DetailTvActivity" />
         <activity android:name=".Movie.DetailMovieActivity" />
         <activity android:name=".SplashActivity">
