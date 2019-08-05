@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="?attr/actionBarSize"
+    android:layout_marginTop="?attr/actionBarSize"
     android:background="@android:color/transparent"
     tools:context=".Favorite.MovieFavorite.MovieFavoriteFragment">
 
@@ -12,12 +12,11 @@
         android:id="@+id/rv_movie_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:clipToPadding="false"
         android:paddingLeft="20dp"
-        android:paddingTop="?attr/actionBarSize"
+        android:paddingTop="10dp"
         android:paddingRight="20dp"
-        android:paddingBottom="10dp"
+        android:paddingBottom="103dp"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

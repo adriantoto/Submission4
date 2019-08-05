@@ -99,15 +99,13 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
     public class MovieFavoriteViewHolder extends RecyclerView.ViewHolder {
         final TextView tvTitle, tvOverview;
         final ImageView ivPoster;
-        final CardView cvMovie;
         final ProgressBar pgMovie;
 
         MovieFavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.title_favorite_item);
-            tvOverview = itemView.findViewById(R.id.overview_favorite_item);
-            ivPoster = itemView.findViewById(R.id.poster_favorite_item);
-            cvMovie = itemView.findViewById(R.id.cv_item_favorite_movie);
+            tvTitle = itemView.findViewById(R.id.tv_item_title_favorite_movie);
+            tvOverview = itemView.findViewById(R.id.tv_item_overview_favorite_movie);
+            ivPoster = itemView.findViewById(R.id.img_item_poster_favorite_movie);
             pgMovie = itemView.findViewById(R.id.progressBar_item_favorite_movie);
         }
     }
