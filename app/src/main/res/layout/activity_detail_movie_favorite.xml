@@ -90,6 +90,7 @@
             android:id="@+id/btn_dislike_movie_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:drawableStart="@drawable/ic_sad"
             android:drawablePadding="1dp"
             android:text="@string/dislike"
@@ -97,53 +98,29 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/textView5_movie_favorite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_movie_favorite"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <View
-            android:id="@+id/view_movie_favorite"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="25dp"
-            android:background="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardviewPosterDetail_movie_favorite"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <View
-            android:id="@+id/view3_movie_favorite"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_movie_favorite"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView5_movie_favorite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:background="@drawable/gradient_list"
             android:text="@string/synopsys"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_overviewDetail_movie_favorite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view3_movie_favorite"
-            app:layout_constraintVertical_bias="0.014" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_dislike_movie_favorite"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/txt_overviewDetail_movie_favorite"
@@ -161,7 +138,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5_movie_favorite"
-            app:layout_constraintVertical_bias="0.0"
             tools:text="As Hiccup fulfills his dream of creating a peaceful dragon utopia, Toothless’ discovery of an untamed, elusive mate draws the Night Fury away. When danger mounts at home and Hiccup’s reign as village chief is tested, both dragon and rider must make impossible decisions to save their kind." />
 
         <ProgressBar
