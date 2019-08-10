@@ -21,7 +21,9 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
+import dicoding.adrian.submission4.Favorite.FavoriteFragment;
 import dicoding.adrian.submission4.Favorite.MovieFavorite.Database.MovieHelper;
+import dicoding.adrian.submission4.MainActivity;
 import dicoding.adrian.submission4.Movie.MovieAdapter;
 import dicoding.adrian.submission4.Movie.MovieItems;
 import dicoding.adrian.submission4.R;
@@ -143,13 +145,14 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 long result = movieHelper.deleteMovie(movie.getId());
                 if (result > 0) {
-                    Intent intent = new Intent();
+                    Intent intent = new Intent(DetailMovieFavoriteActivity.this, MainActivity.class);
                     intent.putExtra(EXTRA_POSITION, position);
-                    setResult(RESULT_DELETE, intent);
-                    finish();
-                    Toast.makeText(DetailMovieFavoriteActivity.this, "Dislike", Toast.LENGTH_SHORT).show();
+                    startActivityForResult(intent, REQUEST_UPDATE);
+                    setResult(RESULT_DELETE);
+                    //finish();
+                    Toast.makeText(DetailMovieFavoriteActivity.this, "Removed from Favorite Movie List", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(DetailMovieFavoriteActivity.this, "Dislike Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailMovieFavoriteActivity.this, "Failed to remove from Favorite Movie List", Toast.LENGTH_SHORT).show();
                 }
             }
         });

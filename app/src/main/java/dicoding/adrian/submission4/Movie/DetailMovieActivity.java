@@ -152,12 +152,12 @@ public class DetailMovieActivity extends AppCompatActivity {
                 intent.putExtra(EXTRA_MOVIE, movie);
                 intent.putExtra(EXTRA_POSITION, position);
                 if (isEdit) {
-                    Toast.makeText(DetailMovieActivity.this, "You already liked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailMovieActivity.this, "Failed to add to Favorite Movie List", Toast.LENGTH_SHORT).show();
                 } else {
                     long result = movieHelper.insertMovie(movie);
                     movie.setId((int) result);
                     setResult(RESULT_ADD, intent);
-                    Toast.makeText(DetailMovieActivity.this, "Like", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailMovieActivity.this, "Added to Favorite Movie List", Toast.LENGTH_SHORT).show();
                 }
             }
         });

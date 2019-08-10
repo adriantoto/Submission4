@@ -65,8 +65,6 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
         this.listMovies.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, listMovies.size());
-        //notifyDataSetChanged();
-        notifyItemChanged(position);
     }
 
     @NonNull

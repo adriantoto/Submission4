@@ -78,6 +78,7 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
 
         // Adapter Instance
         adapter = new MovieFavoriteAdapter(getActivity());
+        adapter.notifyDataSetChanged();
 
         // Set Adapter
         rvFavoriteMovies.setAdapter(adapter);
@@ -104,16 +105,6 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -122,6 +113,12 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
 
     @Override
     public void preExecute() {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
@@ -179,8 +176,8 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onDestroy() {
+        super.onDestroy();
         movieHelper.close();
     }
 }
