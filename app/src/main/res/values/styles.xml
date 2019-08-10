@@ -9,11 +9,6 @@
         <item name="android:fontFamily">@font/brandongrotesque_regular</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlActivated">@color/duskYellow</item>
         <item name="colorControlNormal">@color/lightGrey</item>
