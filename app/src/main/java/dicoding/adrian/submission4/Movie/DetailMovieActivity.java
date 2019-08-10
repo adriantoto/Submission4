@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +22,6 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
-import dicoding.adrian.submission4.Favorite.MovieFavorite.Database.DatabaseHelper;
 import dicoding.adrian.submission4.Favorite.MovieFavorite.Database.MovieHelper;
 import dicoding.adrian.submission4.R;
 
@@ -31,9 +30,6 @@ public class DetailMovieActivity extends AppCompatActivity {
     // Default Keys Values
     public static final int REQUEST_ADD = 100;
     public static final int RESULT_ADD = 101;
-    public static final int REQUEST_UPDATE = 200;
-    public static final int RESULT_UPDATE = 201;
-    public static final int RESULT_DELETE = 301;
 
     // isEdit Declaration
     private boolean isEdit = false;
@@ -61,7 +57,6 @@ public class DetailMovieActivity extends AppCompatActivity {
     ImageView posterBanner;
     ImageView posterDetail;
     Button btnLike;
-    Button btnDislike;
     ImageButton btnBack;
     ProgressBar progressBar;
 
@@ -152,12 +147,14 @@ public class DetailMovieActivity extends AppCompatActivity {
                 intent.putExtra(EXTRA_MOVIE, movie);
                 intent.putExtra(EXTRA_POSITION, position);
                 if (isEdit) {
-                    Toast.makeText(DetailMovieActivity.this, "Failed to add to Favorite Movie List", Toast.LENGTH_SHORT).show();
+                    String failedLike = getString(R.string.FailedLike);
+                    Toast.makeText(DetailMovieActivity.this, failedLike, Toast.LENGTH_SHORT).show();
                 } else {
+                    String successLike = getString(R.string.like);
                     long result = movieHelper.insertMovie(movie);
                     movie.setId((int) result);
                     setResult(RESULT_ADD, intent);
-                    Toast.makeText(DetailMovieActivity.this, "Added to Favorite Movie List", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailMovieActivity.this, successLike, Toast.LENGTH_SHORT).show();
                 }
             }
         });

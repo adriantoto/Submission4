@@ -6,11 +6,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,11 +20,9 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import dicoding.adrian.submission4.Favorite.FavoriteFragment;
 import dicoding.adrian.submission4.Favorite.MovieFavorite.Adapter.MovieFavoriteAdapter;
 import dicoding.adrian.submission4.Favorite.MovieFavorite.Database.MovieHelper;
 import dicoding.adrian.submission4.Movie.DetailMovieActivity;
-import dicoding.adrian.submission4.Movie.MovieAdapter;
 import dicoding.adrian.submission4.Movie.MovieItems;
 import dicoding.adrian.submission4.R;
 
@@ -105,7 +100,7 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_movie_favorite, container, false);
@@ -113,7 +108,7 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
 
     @Override
     public void preExecute() {
-        getActivity().runOnUiThread(new Runnable() {
+        Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 progressBar.setVisibility(View.VISIBLE);

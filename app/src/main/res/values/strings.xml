@@ -14,4 +14,6 @@
     <string name="favorite">Favorite</string>
     <string name="like">Add to Favorite List</string>
     <string name="dislike">Remove from Favorite List</string>
+    <string name="FailedDislike">Failed to remove from Favorite Movie List</string>
+    <string name="FailedLike">Failed to add to Favorite Movie List</string>
 </resources>

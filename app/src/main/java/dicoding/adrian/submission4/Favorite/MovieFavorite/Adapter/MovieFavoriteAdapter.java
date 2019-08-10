@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +25,6 @@ import java.util.ArrayList;
 
 import dicoding.adrian.submission4.CustomOnItemClickListener;
 import dicoding.adrian.submission4.Favorite.MovieFavorite.DetailMovieFavoriteActivity;
-import dicoding.adrian.submission4.Movie.DetailMovieActivity;
 import dicoding.adrian.submission4.Movie.MovieItems;
 import dicoding.adrian.submission4.R;
 
@@ -55,11 +53,6 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
     public void addItem(MovieItems movieItems) {
         this.listMovies.add(movieItems);
         notifyItemInserted(listMovies.size() - 1);
-    }
-
-    public void updateItem(int position, MovieItems movieItems) {
-        this.listMovies.set(position, movieItems);
-        notifyItemChanged(position, movieItems);
     }
 
     public void removeItem(int position) {
@@ -128,7 +121,7 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
         return super.getItemId(position);
     }
 
-    public class MovieFavoriteViewHolder extends RecyclerView.ViewHolder {
+    class MovieFavoriteViewHolder extends RecyclerView.ViewHolder {
         final TextView tvTitle, tvOverview, tvReleased, tvScore;
         final RatingBar rbItemMovieFavorite;
         final ImageView ivPoster;
