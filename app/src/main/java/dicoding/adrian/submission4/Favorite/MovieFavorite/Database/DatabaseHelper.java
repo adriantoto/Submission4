@@ -14,12 +14,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     + " (%s INTEGER PRIMARY KEY AUTOINCREMENT," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL)",
             DatabaseContract.TABLE_MOVIE,
             DatabaseContract.MovieColumns._ID,
             DatabaseContract.MovieColumns.TITLE,
             DatabaseContract.MovieColumns.POSTER,
-            DatabaseContract.MovieColumns.OVERVIEW
+            DatabaseContract.MovieColumns.OVERVIEW,
+            DatabaseContract.MovieColumns.RELEASED,
+            DatabaseContract.MovieColumns.SCORE
     );
 
     public DatabaseHelper(Context context) {

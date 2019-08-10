@@ -55,6 +55,67 @@
         tools:text="Aquaman" />
 
     <TextView
+        android:id="@+id/tv_item_releasedYear_favorite_movie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/cardview_poster_favorite_movie"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_title_favorite_movie"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="2018" />
+
+    <RatingBar
+        android:id="@+id/scoreHome_favorite_movie"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:isIndicator="true"
+        android:max="5"
+        android:stepSize="0.01"
+        android:theme="@style/RatingBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/cardview_poster_favorite_movie"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_releasedYear_favorite_movie"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_item_scoreAngkaHome_favorite_movie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:textColor="@color/duskYellow"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/scoreHome_favorite_movie"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_releasedYear_favorite_movie"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="75" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/percent"
+        android:textColor="@color/duskYellow"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_item_scoreAngkaHome_favorite_movie"
+        app:layout_constraintTop_toTopOf="@+id/tv_item_scoreAngkaHome_favorite_movie"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
         android:id="@+id/tv_item_overview_favorite_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,7 +129,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/cardview_poster_favorite_movie"
-        app:layout_constraintTop_toBottomOf="@+id/tv_item_title_favorite_movie"
+        app:layout_constraintTop_toBottomOf="@+id/scoreHome_favorite_movie"
         app:layout_constraintVertical_bias="0.0"
         tools:text="Overview" />
 

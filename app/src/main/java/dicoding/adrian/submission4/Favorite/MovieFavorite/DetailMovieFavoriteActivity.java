@@ -57,6 +57,7 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity {
     // Widget Variables Declaration
     TextView txtTitleDetail;
     TextView txtOverviewDetail;
+    TextView txtScoreDetail;
     ImageView posterBanner;
     ImageView posterDetail;
     Button btnDislike;
@@ -91,6 +92,7 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity {
         txtOverviewDetail = findViewById(R.id.txt_overviewDetail_movie_favorite);
         posterBanner = findViewById(R.id.poster_banner_movie_favorite);
         posterDetail = findViewById(R.id.poster_detail_movie_favorite);
+        txtScoreDetail = findViewById(R.id.txt_scoreAngkaDetail_movie_favorite);
 
         // Casting Button Variables
         btnBack = findViewById(R.id.btn_back_movie_favorite);
@@ -110,6 +112,8 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity {
         // Mengisi data String
         txtTitleDetail.setText(movie.getTitle());
         txtOverviewDetail.setText(movie.getOverview());
+        double score = movie.getScore() * 10;
+        txtScoreDetail.setText(String.valueOf((int) score));
 
         // Mengisi data image
         String url = "https://image.tmdb.org/t/p/original" + movie.getPoster();

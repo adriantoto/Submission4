@@ -14,6 +14,8 @@ import dicoding.adrian.submission4.Movie.MovieItems;
 import static android.provider.BaseColumns._ID;
 import static dicoding.adrian.submission4.Favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.OVERVIEW;
 import static dicoding.adrian.submission4.Favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.POSTER;
+import static dicoding.adrian.submission4.Favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.RELEASED;
+import static dicoding.adrian.submission4.Favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.SCORE;
 import static dicoding.adrian.submission4.Favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.TITLE;
 import static dicoding.adrian.submission4.Favorite.MovieFavorite.Database.DatabaseContract.TABLE_MOVIE;
 
@@ -67,6 +69,8 @@ public class MovieHelper {
                 movieItems.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
                 movieItems.setPoster(cursor.getString(cursor.getColumnIndexOrThrow(POSTER)));
                 movieItems.setOverview(cursor.getString(cursor.getColumnIndexOrThrow(OVERVIEW)));
+                movieItems.setReleased(cursor.getString(cursor.getColumnIndexOrThrow(RELEASED)));
+                movieItems.setScore(cursor.getDouble(cursor.getColumnIndexOrThrow(SCORE)));
 
                 arrayList.add(movieItems);
                 cursor.moveToNext();
@@ -81,6 +85,8 @@ public class MovieHelper {
         args.put(TITLE, movieItems.getTitle());
         args.put(POSTER, movieItems.getPoster());
         args.put(OVERVIEW, movieItems.getOverview());
+        args.put(RELEASED, movieItems.getReleased());
+        args.put(SCORE, movieItems.getScore());
         return database.insert(DATABASE_TABLE, null, args);
     }
 
@@ -89,6 +95,8 @@ public class MovieHelper {
         args.put(TITLE, movieItems.getTitle());
         args.put(POSTER, movieItems.getPoster());
         args.put(OVERVIEW, movieItems.getOverview());
+        args.put(RELEASED, movieItems.getReleased());
+        args.put(SCORE, movieItems.getScore());
         return database.update(DATABASE_TABLE, args, _ID + "= '" + movieItems.getId() + "'", null);
     }
 

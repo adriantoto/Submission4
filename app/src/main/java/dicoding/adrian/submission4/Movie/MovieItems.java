@@ -66,7 +66,7 @@ public class MovieItems implements Parcelable {
         return title;
     }
 
-    String getReleased() {
+    public String getReleased() {
         return released;
     }
 
@@ -78,7 +78,7 @@ public class MovieItems implements Parcelable {
         return poster;
     }
 
-    double getScore() {
+    public double getScore() {
         return score;
     }
 

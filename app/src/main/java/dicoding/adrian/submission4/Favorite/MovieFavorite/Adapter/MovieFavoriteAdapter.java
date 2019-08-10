@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -76,8 +77,18 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
 
     @Override
     public void onBindViewHolder(@NonNull final MovieFavoriteAdapter.MovieFavoriteViewHolder holder, int position) {
+
+        // String and Number Value
         holder.tvTitle.setText(listMovies.get(position).getTitle());
         holder.tvOverview.setText(listMovies.get(position).getOverview());
+        String releasedDate = listMovies.get(position).getReleased();
+        String releasedYear = releasedDate.substring(0, 4);
+        holder.tvReleased.setText(releasedYear);
+        double score = listMovies.get(position).getScore() * 10;
+        holder.tvScore.setText(String.valueOf((int) score));
+        holder.rbItemMovieFavorite.setRating((float) ((score * 5) / 100));
+
+        // Image Value
         String uri = "https://image.tmdb.org/t/p/original" + listMovies.get(position).getPoster();
         Glide.with(holder.itemView.getContext())
                 .load(uri)
@@ -94,6 +105,8 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
                     }
                 })
                 .into(holder.ivPoster);
+
+        // Intent To Detail Activity
         holder.itemFavoriteMovie.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback() {
             @Override
             public void onItemClicked(View view, int position) {
@@ -116,7 +129,8 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
     }
 
     public class MovieFavoriteViewHolder extends RecyclerView.ViewHolder {
-        final TextView tvTitle, tvOverview;
+        final TextView tvTitle, tvOverview, tvReleased, tvScore;
+        final RatingBar rbItemMovieFavorite;
         final ImageView ivPoster;
         final ProgressBar pgMovie;
         final ConstraintLayout itemFavoriteMovie;
@@ -125,6 +139,9 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_item_title_favorite_movie);
             tvOverview = itemView.findViewById(R.id.tv_item_overview_favorite_movie);
+            tvReleased = itemView.findViewById(R.id.tv_item_releasedYear_favorite_movie);
+            tvScore = itemView.findViewById(R.id.tv_item_scoreAngkaHome_favorite_movie);
+            rbItemMovieFavorite = itemView.findViewById(R.id.scoreHome_favorite_movie);
             ivPoster = itemView.findViewById(R.id.img_item_poster_favorite_movie);
             pgMovie = itemView.findViewById(R.id.progressBar_item_favorite_movie);
             itemFavoriteMovie = itemView.findViewById(R.id.cv_item_favorite_movie);
