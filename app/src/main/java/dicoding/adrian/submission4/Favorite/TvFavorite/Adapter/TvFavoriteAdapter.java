@@ -104,10 +104,14 @@ public class TvFavoriteAdapter extends RecyclerView.Adapter<TvFavoriteAdapter.Tv
         holder.itemFavoriteTv.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback() {
             @Override
             public void onItemClicked(View view, int position) {
+                // Define and Start Intent
                 Intent intent = new Intent(activity, DetailTvFavoriteActivity.class);
                 intent.putExtra(DetailTvFavoriteActivity.EXTRA_POSITION, position);
                 intent.putExtra(DetailTvFavoriteActivity.EXTRA_TV, listTvs.get(position));
                 activity.startActivityForResult(intent, DetailTvFavoriteActivity.REQUEST_UPDATE);
+
+                // Intent Transition Animation
+                activity.overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
             }
         }));
     }

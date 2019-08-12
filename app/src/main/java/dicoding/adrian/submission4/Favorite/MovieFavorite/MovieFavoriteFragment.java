@@ -105,6 +105,7 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
         Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                // Loading Progress
             }
         });
     }

@@ -103,10 +103,14 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
         holder.itemFavoriteMovie.setOnClickListener(new CustomOnItemClickListener(position, new CustomOnItemClickListener.OnItemClickCallback() {
             @Override
             public void onItemClicked(View view, int position) {
+                // Define and Start Intent
                 Intent intent = new Intent(activity, DetailMovieFavoriteActivity.class);
                 intent.putExtra(DetailMovieFavoriteActivity.EXTRA_POSITION, position);
                 intent.putExtra(DetailMovieFavoriteActivity.EXTRA_MOVIE, listMovies.get(position));
                 activity.startActivityForResult(intent, DetailMovieFavoriteActivity.REQUEST_UPDATE);
+
+                // Intent Transition Animation
+                activity.overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
             }
         }));
     }

@@ -105,6 +105,7 @@ public class TvFavoriteFragment extends Fragment implements LoadTvsCallback {
         Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                // Loading Progress
             }
         });
     }
