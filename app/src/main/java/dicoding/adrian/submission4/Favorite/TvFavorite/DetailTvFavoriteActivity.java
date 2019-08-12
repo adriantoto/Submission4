@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.TV;
+package dicoding.adrian.submission4.Favorite.TvFavorite;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -22,13 +22,16 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
 import dicoding.adrian.submission4.Favorite.TvFavorite.Database.TvHelper;
+import dicoding.adrian.submission4.MainActivity;
 import dicoding.adrian.submission4.R;
+import dicoding.adrian.submission4.TV.TvAdapter;
+import dicoding.adrian.submission4.TV.TvItems;
 
-public class DetailTvActivity extends AppCompatActivity {
+public class DetailTvFavoriteActivity extends AppCompatActivity {
 
     // Default Keys Values
-    public static final int REQUEST_ADD = 100;
-    public static final int RESULT_ADD = 101;
+    public static final int REQUEST_UPDATE = 200;
+    public static final int RESULT_DELETE = 301;
 
     // isEdit Declaration
     private boolean isEdit = false;
@@ -36,7 +39,7 @@ public class DetailTvActivity extends AppCompatActivity {
     /// Position Variable
     private int position;
 
-    // Default Value
+    // Default Values
     public static final String EXTRA_TV = "extra_tv";
     public static final String EXTRA_POSITION = "extra_position";
 
@@ -46,23 +49,23 @@ public class DetailTvActivity extends AppCompatActivity {
     // Adaoter Declaration
     TvAdapter adapter;
 
-    // Instance Movie Items
+    // Instance TV Items
     private TvItems tv;
 
-    // Data Variables Declaration
+    // Widget Variables Declaration
     TextView txtTitleDetail;
     TextView txtOverviewDetail;
-    TextView txtScoreAngkaDetail;
+    TextView txtScoreDetail;
     ImageView posterBanner;
     ImageView posterDetail;
-    Button btnLike;
+    Button btnDislike;
     ImageButton btnBack;
     ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_tv);
+        setContentView(R.layout.activity_detail_tv_favorite);
 
         // Movie Helper Instance
         tvHelper = TvHelper.getInstance(getApplicationContext());
@@ -73,7 +76,7 @@ public class DetailTvActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         // TextView Layout Gradient
-        TextView myBackground = findViewById(R.id.textView5_tv);
+        TextView myBackground = findViewById(R.id.textView5_tv_favorite);
         AnimationDrawable animationDrawable = (AnimationDrawable) myBackground.getBackground();
         animationDrawable.setEnterFadeDuration(2000);
         animationDrawable.setExitFadeDuration(4000);
@@ -83,21 +86,21 @@ public class DetailTvActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         // Casting Data Variables
-        txtTitleDetail = findViewById(R.id.txt_title_detail_tv);
-        txtOverviewDetail = findViewById(R.id.txt_overviewDetail_tv);
-        txtScoreAngkaDetail = findViewById(R.id.txt_scoreAngkaDetail_tv);
-        posterBanner = findViewById(R.id.poster_banner_tv);
-        posterDetail = findViewById(R.id.poster_detail_tv);
+        txtTitleDetail = findViewById(R.id.txt_title_detail_tv_favorite);
+        txtOverviewDetail = findViewById(R.id.txt_overviewDetail_tv_favorite);
+        posterBanner = findViewById(R.id.poster_banner_tv_favorite);
+        posterDetail = findViewById(R.id.poster_detail_tv_favorite);
+        txtScoreDetail = findViewById(R.id.txt_scoreAngkaDetail_tv_favorite);
 
         // Casting Button Variables
-        btnBack = findViewById(R.id.btn_back_tv);
-        btnLike = findViewById(R.id.btn_like_tv);
+        btnBack = findViewById(R.id.btn_back_tv_favorite);
+        btnDislike = findViewById(R.id.btn_dislike_tv_favorite);
 
         // Progress Bar Declaration
-        progressBar = findViewById(R.id.progressBar_detailMovie_tv);
+        progressBar = findViewById(R.id.progressBar_detailMovie_tv_favorite);
         progressBar.bringToFront();
 
-        // Menerima intent
+        // Menerima Intent Movie dan Positon
         tv = getIntent().getParcelableExtra(EXTRA_TV);
         position = getIntent().getIntExtra(EXTRA_POSITION, 0);
         if (position > 0) {
@@ -108,12 +111,12 @@ public class DetailTvActivity extends AppCompatActivity {
         txtTitleDetail.setText(tv.getTitle());
         txtOverviewDetail.setText(tv.getOverview());
         double score = tv.getScore() * 10;
-        txtScoreAngkaDetail.setText(String.valueOf((int) score));
+        txtScoreDetail.setText(String.valueOf((int) score));
 
         // Mengisi data image
         String url = "https://image.tmdb.org/t/p/original" + tv.getPoster();
-        Glide.with(DetailTvActivity.this).load(url).into(posterBanner);
-        Glide.with(DetailTvActivity.this)
+        Glide.with(DetailTvFavoriteActivity.this).load(url).into(posterBanner);
+        Glide.with(DetailTvFavoriteActivity.this)
                 .load(url)
                 .listener(new RequestListener<Drawable>() {
                     @Override
@@ -138,22 +141,22 @@ public class DetailTvActivity extends AppCompatActivity {
             }
         });
 
-        // setOnClickListener untuk Button Like
-        btnLike.setOnClickListener(new View.OnClickListener() {
+        // setOnClickListener untuk Button Dislike
+        btnDislike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra(EXTRA_TV, tv);
-                intent.putExtra(EXTRA_POSITION, position);
-                if (isEdit) {
-                    String failedLike = getString(R.string.FailedLike);
-                    Toast.makeText(DetailTvActivity.this, failedLike, Toast.LENGTH_SHORT).show();
+                long result = tvHelper.deleteTv(tv.getId());
+                if (result > 0) {
+                    Intent intent = new Intent(DetailTvFavoriteActivity.this, MainActivity.class);
+                    intent.putExtra(EXTRA_POSITION, position);
+                    startActivityForResult(intent, REQUEST_UPDATE);
+                    setResult(RESULT_DELETE);
+                    finish();
+                    String remove = getString(R.string.dislike);
+                    Toast.makeText(DetailTvFavoriteActivity.this, remove, Toast.LENGTH_SHORT).show();
                 } else {
-                    String successLike = getString(R.string.like);
-                    long result = tvHelper.insertTv(tv);
-                    tv.setId((int) result);
-                    setResult(RESULT_ADD, intent);
-                    Toast.makeText(DetailTvActivity.this, successLike, Toast.LENGTH_SHORT).show();
+                    String failedRemove = getString(R.string.FailedDislike);
+                    Toast.makeText(DetailTvFavoriteActivity.this, failedRemove, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -168,6 +171,6 @@ public class DetailTvActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        DetailTvActivity.this.overridePendingTransition(R.anim.no_animation, R.anim.slide_down);
+        DetailTvFavoriteActivity.this.overridePendingTransition(R.anim.no_animation, R.anim.slide_down);
     }
 }

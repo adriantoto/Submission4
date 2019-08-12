@@ -151,7 +151,7 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity {
                     intent.putExtra(EXTRA_POSITION, position);
                     startActivityForResult(intent, REQUEST_UPDATE);
                     setResult(RESULT_DELETE);
-                    //finish();
+                    finish();
                     String remove = getString(R.string.dislike);
                     Toast.makeText(DetailMovieFavoriteActivity.this, remove, Toast.LENGTH_SHORT).show();
                 } else {

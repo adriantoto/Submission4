@@ -13,6 +13,7 @@ public class TvItems implements Parcelable {
     private String released;
     private String overview;
     private String poster;
+    private double score;
 
     TvItems(JSONObject object) {
         try {
@@ -33,35 +34,53 @@ public class TvItems implements Parcelable {
         }
     }
 
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    String getTitle() {
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setReleased(String released) {
+        this.released = released;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
         return title;
     }
 
-    String getReleased() {
+    public String getReleased() {
         return released;
     }
 
-    String getOverview() {
+    public String getOverview() {
         return overview;
     }
 
-    String getPoster() {
+    public String getPoster() {
         return poster;
     }
 
-    double getScore() {
+    public double getScore() {
         return score;
     }
-
-    private double score;
 
     @Override
     public int describeContents() {
@@ -76,6 +95,9 @@ public class TvItems implements Parcelable {
         dest.writeString(this.overview);
         dest.writeString(this.poster);
         dest.writeDouble(this.score);
+    }
+
+    public TvItems() {
     }
 
     private TvItems(Parcel in) {

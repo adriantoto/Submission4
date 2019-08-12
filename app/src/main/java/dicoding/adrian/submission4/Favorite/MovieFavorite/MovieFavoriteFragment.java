@@ -14,7 +14,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -35,7 +34,6 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
     RecyclerView rvFavoriteMovies;
     ArrayList<MovieItems> movieItems;
     MovieFavoriteAdapter adapter;
-    ProgressBar progressBar;
     MovieHelper movieHelper;
 
     // Default Value
@@ -78,10 +76,6 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
         // Set Adapter
         rvFavoriteMovies.setAdapter(adapter);
 
-        // Cast Progressbar
-        progressBar = view.findViewById(R.id.progressBar_favorite_movie);
-        progressBar.bringToFront();
-
         // SavedInstanceState
         if (savedInstanceState == null) {
             new LoadMoviesAsync(movieHelper, this).execute();
@@ -111,14 +105,12 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
         Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                progressBar.setVisibility(View.VISIBLE);
             }
         });
     }
 
     @Override
     public void postExecute(ArrayList<MovieItems> movies) {
-        progressBar.setVisibility(View.GONE);
         adapter.setListMovie(movies);
     }
 
