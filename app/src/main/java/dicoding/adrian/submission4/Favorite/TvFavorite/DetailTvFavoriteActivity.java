@@ -149,6 +149,7 @@ public class DetailTvFavoriteActivity extends AppCompatActivity {
                 if (result > 0) {
                     Intent intent = new Intent(DetailTvFavoriteActivity.this, MainActivity.class);
                     intent.putExtra(EXTRA_POSITION, position);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivityForResult(intent, REQUEST_UPDATE);
                     setResult(RESULT_DELETE);
                     finish();
