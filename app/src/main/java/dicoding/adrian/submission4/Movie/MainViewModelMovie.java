@@ -17,7 +17,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainViewModelMovie extends ViewModel {
 
-    private static final String API_KEY = "b63ce35808c2461f46a92dc7707a9453";
+    private static final String API_KEY = "";
     private MutableLiveData<ArrayList<MovieItems>> listMovies = new MutableLiveData<>();
 
     void setMovie() {
