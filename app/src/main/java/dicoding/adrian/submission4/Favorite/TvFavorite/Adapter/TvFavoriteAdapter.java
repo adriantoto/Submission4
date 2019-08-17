@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -71,9 +70,6 @@ public class TvFavoriteAdapter extends RecyclerView.Adapter<TvFavoriteAdapter.Tv
     @Override
     public void onBindViewHolder(@NonNull final TvFavoriteAdapter.TvFavoriteViewHolder holder, int position) {
 
-        // String and Number Value
-        holder.tvTitle.setText(listTvs.get(position).getTitle());
-
         // Image Value
         String uri = "https://image.tmdb.org/t/p/original" + listTvs.get(position).getPoster();
         Glide.with(holder.itemView.getContext())
@@ -119,14 +115,12 @@ public class TvFavoriteAdapter extends RecyclerView.Adapter<TvFavoriteAdapter.Tv
     }
 
     class TvFavoriteViewHolder extends RecyclerView.ViewHolder {
-        final TextView tvTitle;
         final ImageView ivPoster;
         final ProgressBar pgTv;
         final ConstraintLayout itemFavoriteTv;
 
         TvFavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.tv_item_title_favorite_tv);
             ivPoster = itemView.findViewById(R.id.img_item_poster_favorite_tv);
             pgTv = itemView.findViewById(R.id.progressBar_item_favorite_tv);
             itemFavoriteTv = itemView.findViewById(R.id.cv_item_favorite_tv);
