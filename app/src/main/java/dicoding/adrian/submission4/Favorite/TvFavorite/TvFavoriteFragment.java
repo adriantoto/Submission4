@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -56,12 +54,6 @@ public class TvFavoriteFragment extends Fragment implements LoadTvsCallback {
 
         // Layout Manager
         rvFavoriteTvs.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        // Divider between item list
-        DividerItemDecoration itemDecorator = new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.VERTICAL);
-        itemDecorator.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(Objects.requireNonNull(getContext()), R.drawable.divider)));
-        rvFavoriteTvs.addItemDecoration(itemDecorator);
-        rvFavoriteTvs.setHasFixedSize(true);
 
         // MovieHelper Instance
         tvHelper = new TvHelper(getActivity());

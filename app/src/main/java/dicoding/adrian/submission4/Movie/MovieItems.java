@@ -13,6 +13,7 @@ public class MovieItems implements Parcelable {
     private String released;
     private String overview;
     private String poster;
+    private String backdrop;
     private double score;
 
     MovieItems(JSONObject object) {
@@ -22,12 +23,14 @@ public class MovieItems implements Parcelable {
             String released = object.getString("release_date");
             String overview = object.getString("overview");
             String poster = object.getString("poster_path");
+            String backdrop = object.getString("backdrop_path");
             double score = object.getDouble("vote_average");
             this.id = id;
             this.title = title;
             this.released = released;
             this.overview = overview;
             this.poster = poster;
+            this.backdrop = backdrop;
             this.score = score;
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,6 +51,10 @@ public class MovieItems implements Parcelable {
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    public void setBackdrop(String backdrop) {
+        this.backdrop = backdrop;
     }
 
     public void setScore(double score) {
@@ -82,6 +89,10 @@ public class MovieItems implements Parcelable {
         return score;
     }
 
+    public String getBackdrop() {
+        return backdrop;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -94,6 +105,7 @@ public class MovieItems implements Parcelable {
         dest.writeString(this.released);
         dest.writeString(this.overview);
         dest.writeString(this.poster);
+        dest.writeString(this.backdrop);
         dest.writeDouble(this.score);
     }
 
@@ -106,6 +118,7 @@ public class MovieItems implements Parcelable {
         this.released = in.readString();
         this.overview = in.readString();
         this.poster = in.readString();
+        this.backdrop = in.readString();
         this.score = in.readDouble();
     }
 

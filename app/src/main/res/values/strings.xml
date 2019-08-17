@@ -10,8 +10,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="favorite">Favorite</string>
-    <string name="like">Add to Favorite List</string>
-    <string name="dislike">Remove from Favorite List</string>
-    <string name="FailedDislike">Failed to remove from Favorite Movie List</string>
-    <string name="FailedLike">Failed to add to Favorite Movie List</string>
+    <string name="like">Add to Favorite</string>
+    <string name="dislike">Remove from Favorite</string>
+    <string name="FailedDislike">Failed to remove from Favorite</string>
+    <string name="FailedLike">Failed to add to Favorite</string>
 </resources>

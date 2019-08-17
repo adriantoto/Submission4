@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -42,13 +41,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(@NonNull final MovieViewHolder movieViewHolder, int position) {
-        movieViewHolder.textViewTitle.setText(mData.get(position).getTitle());
-        movieViewHolder.textViewOverview.setText(mData.get(position).getOverview());
-        String releaseDate = mData.get(position).getReleased();
-        String releasedYear = releaseDate.substring(0, 4);
-        movieViewHolder.textViewReleased.setText(releasedYear);
         double score = mData.get(position).getScore() * 10;
-        movieViewHolder.score.setRating((float) ((score * 5) / 100));
         movieViewHolder.textViewScore.setText(String.valueOf((int) score));
         String uri = "https://image.tmdb.org/t/p/original" + mData.get(position).getPoster();
         Glide.with(movieViewHolder.itemView.getContext())
@@ -74,22 +67,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     class MovieViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewTitle;
         ImageView poster;
-        TextView textViewReleased;
-        TextView textViewOverview;
-        RatingBar score;
         TextView textViewScore;
         ProgressBar progressBarItemMovie;
 
         MovieViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.tv_item_title);
             poster = itemView.findViewById(R.id.img_item_poster);
-            textViewReleased = itemView.findViewById(R.id.tv_item_releasedYear);
-            textViewOverview = itemView.findViewById(R.id.tv_item_overview);
             textViewScore = itemView.findViewById(R.id.tv_item_scoreAngkaHome);
-            score = itemView.findViewById(R.id.scoreHome);
             progressBarItemMovie = itemView.findViewById(R.id.progressBar_itemMovie);
 
             itemView.setOnClickListener(new View.OnClickListener() {

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import dicoding.adrian.submission4.Movie.MovieItems;
 
 import static android.provider.BaseColumns._ID;
+import static dicoding.adrian.submission4.Favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.BACKDROP;
 import static dicoding.adrian.submission4.Favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.OVERVIEW;
 import static dicoding.adrian.submission4.Favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.POSTER;
 import static dicoding.adrian.submission4.Favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.RELEASED;
@@ -68,6 +69,7 @@ public class MovieHelper {
                 movieItems.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
                 movieItems.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
                 movieItems.setPoster(cursor.getString(cursor.getColumnIndexOrThrow(POSTER)));
+                movieItems.setBackdrop(cursor.getString(cursor.getColumnIndexOrThrow(BACKDROP)));
                 movieItems.setOverview(cursor.getString(cursor.getColumnIndexOrThrow(OVERVIEW)));
                 movieItems.setReleased(cursor.getString(cursor.getColumnIndexOrThrow(RELEASED)));
                 movieItems.setScore(cursor.getDouble(cursor.getColumnIndexOrThrow(SCORE)));
@@ -84,6 +86,7 @@ public class MovieHelper {
         ContentValues args = new ContentValues();
         args.put(TITLE, movieItems.getTitle());
         args.put(POSTER, movieItems.getPoster());
+        args.put(BACKDROP, movieItems.getBackdrop());
         args.put(OVERVIEW, movieItems.getOverview());
         args.put(RELEASED, movieItems.getReleased());
         args.put(SCORE, movieItems.getScore());
@@ -94,6 +97,7 @@ public class MovieHelper {
         ContentValues args = new ContentValues();
         args.put(TITLE, movieItems.getTitle());
         args.put(POSTER, movieItems.getPoster());
+        args.put(BACKDROP, movieItems.getBackdrop());
         args.put(OVERVIEW, movieItems.getOverview());
         args.put(RELEASED, movieItems.getReleased());
         args.put(SCORE, movieItems.getScore());

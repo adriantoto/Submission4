@@ -16,11 +16,13 @@ public class DatabaseHelperTv extends SQLiteOpenHelper {
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL)",
             DatabaseContractTv.TABLE_TV,
             DatabaseContractTv.TvColumns._ID,
             DatabaseContractTv.TvColumns.TITLE_TV,
             DatabaseContractTv.TvColumns.POSTER_TV,
+            DatabaseContractTv.TvColumns.BACKDROP_TV,
             DatabaseContractTv.TvColumns.OVERVIEW_TV,
             DatabaseContractTv.TvColumns.RELEASED_TV,
             DatabaseContractTv.TvColumns.SCORE_TV

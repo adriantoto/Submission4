@@ -14,6 +14,7 @@ import dicoding.adrian.submission4.TV.TvItems;
 import static android.provider.BaseColumns._ID;
 
 import static dicoding.adrian.submission4.Favorite.TvFavorite.Database.DatabaseContractTv.TABLE_TV;
+import static dicoding.adrian.submission4.Favorite.TvFavorite.Database.DatabaseContractTv.TvColumns.BACKDROP_TV;
 import static dicoding.adrian.submission4.Favorite.TvFavorite.Database.DatabaseContractTv.TvColumns.OVERVIEW_TV;
 import static dicoding.adrian.submission4.Favorite.TvFavorite.Database.DatabaseContractTv.TvColumns.POSTER_TV;
 import static dicoding.adrian.submission4.Favorite.TvFavorite.Database.DatabaseContractTv.TvColumns.RELEASED_TV;
@@ -70,6 +71,7 @@ public class TvHelper {
                 tvItems.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
                 tvItems.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(TITLE_TV)));
                 tvItems.setPoster(cursor.getString(cursor.getColumnIndexOrThrow(POSTER_TV)));
+                tvItems.setBackdrop(cursor.getString(cursor.getColumnIndexOrThrow(BACKDROP_TV)));
                 tvItems.setOverview(cursor.getString(cursor.getColumnIndexOrThrow(OVERVIEW_TV)));
                 tvItems.setReleased(cursor.getString(cursor.getColumnIndexOrThrow(RELEASED_TV)));
                 tvItems.setScore(cursor.getDouble(cursor.getColumnIndexOrThrow(SCORE_TV)));
@@ -86,6 +88,7 @@ public class TvHelper {
         ContentValues args = new ContentValues();
         args.put(TITLE_TV, tvItems.getTitle());
         args.put(POSTER_TV, tvItems.getPoster());
+        args.put(BACKDROP_TV, tvItems.getBackdrop());
         args.put(OVERVIEW_TV, tvItems.getOverview());
         args.put(RELEASED_TV, tvItems.getReleased());
         args.put(SCORE_TV, tvItems.getScore());
@@ -96,6 +99,7 @@ public class TvHelper {
         ContentValues args = new ContentValues();
         args.put(TITLE_TV, tvItems.getTitle());
         args.put(POSTER_TV, tvItems.getPoster());
+        args.put(BACKDROP_TV, tvItems.getBackdrop());
         args.put(OVERVIEW_TV, tvItems.getOverview());
         args.put(RELEASED_TV, tvItems.getReleased());
         args.put(SCORE_TV, tvItems.getScore());

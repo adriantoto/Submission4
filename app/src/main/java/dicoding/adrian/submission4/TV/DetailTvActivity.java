@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,12 +53,11 @@ public class DetailTvActivity extends AppCompatActivity {
     // Data Variables Declaration
     TextView txtTitleDetail;
     TextView txtOverviewDetail;
-    TextView txtScoreAngkaDetail;
     ImageView posterBanner;
-    ImageView posterDetail;
     Button btnLike;
     ImageButton btnBack;
     ProgressBar progressBar;
+    RatingBar scoreDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,29 +72,21 @@ public class DetailTvActivity extends AppCompatActivity {
         adapter = new TvAdapter();
         adapter.notifyDataSetChanged();
 
-        // TextView Layout Gradient
-        TextView myBackground = findViewById(R.id.textView5_tv);
-        AnimationDrawable animationDrawable = (AnimationDrawable) myBackground.getBackground();
-        animationDrawable.setEnterFadeDuration(2000);
-        animationDrawable.setExitFadeDuration(4000);
-        animationDrawable.start();
-
         // Translucent Status Bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         // Casting Data Variables
         txtTitleDetail = findViewById(R.id.txt_title_detail_tv);
         txtOverviewDetail = findViewById(R.id.txt_overviewDetail_tv);
-        txtScoreAngkaDetail = findViewById(R.id.txt_scoreAngkaDetail_tv);
         posterBanner = findViewById(R.id.poster_banner_tv);
-        posterDetail = findViewById(R.id.poster_detail_tv);
+        scoreDetail = findViewById(R.id.score_detail_tv);
 
         // Casting Button Variables
         btnBack = findViewById(R.id.btn_back_tv);
         btnLike = findViewById(R.id.btn_like_tv);
 
         // Progress Bar Declaration
-        progressBar = findViewById(R.id.progressBar_detailMovie_tv);
+        progressBar = findViewById(R.id.progressBar_detailTv);
         progressBar.bringToFront();
 
         // Menerima intent
@@ -108,11 +100,10 @@ public class DetailTvActivity extends AppCompatActivity {
         txtTitleDetail.setText(tv.getTitle());
         txtOverviewDetail.setText(tv.getOverview());
         double score = tv.getScore() * 10;
-        txtScoreAngkaDetail.setText(String.valueOf((int) score));
+        scoreDetail.setRating((float) ((score * 5) / 100));
 
         // Mengisi data image
-        String url = "https://image.tmdb.org/t/p/original" + tv.getPoster();
-        Glide.with(DetailTvActivity.this).load(url).into(posterBanner);
+        String url = "https://image.tmdb.org/t/p/original" + tv.getBackdrop();
         Glide.with(DetailTvActivity.this)
                 .load(url)
                 .listener(new RequestListener<Drawable>() {
@@ -127,7 +118,7 @@ public class DetailTvActivity extends AppCompatActivity {
                         return false;
                     }
                 })
-                .into(posterDetail);
+                .into(posterBanner);
 
         // setOnClickListener untuk Button Back
         btnBack.setOnClickListener(new View.OnClickListener() {

@@ -1,7 +1,6 @@
 package dicoding.adrian.submission4.Movie;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 
@@ -13,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,12 +53,11 @@ public class DetailMovieActivity extends AppCompatActivity {
     // Widget Variables Declaration
     TextView txtTitleDetail;
     TextView txtOverviewDetail;
-    TextView txtScoreAngkaDetail;
     ImageView posterBanner;
-    ImageView posterDetail;
     Button btnLike;
     ImageButton btnBack;
     ProgressBar progressBar;
+    RatingBar scoreDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,22 +72,14 @@ public class DetailMovieActivity extends AppCompatActivity {
         adapter = new MovieAdapter();
         adapter.notifyDataSetChanged();
 
-        // TextView Layout Gradient
-        TextView myBackground = findViewById(R.id.textView5);
-        AnimationDrawable animationDrawable = (AnimationDrawable) myBackground.getBackground();
-        animationDrawable.setEnterFadeDuration(2000);
-        animationDrawable.setExitFadeDuration(4000);
-        animationDrawable.start();
-
         // Translucent Status Bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         // Casting Data Variables
         txtTitleDetail = findViewById(R.id.txt_title_detail);
         txtOverviewDetail = findViewById(R.id.txt_overviewDetail);
-        txtScoreAngkaDetail = findViewById(R.id.txt_scoreAngkaDetail);
         posterBanner = findViewById(R.id.poster_banner);
-        posterDetail = findViewById(R.id.poster_detail);
+        scoreDetail = findViewById(R.id.score_detail_movie);
 
         // Casting Button Variables
         btnBack = findViewById(R.id.btn_back);
@@ -109,11 +100,10 @@ public class DetailMovieActivity extends AppCompatActivity {
         txtTitleDetail.setText(movie.getTitle());
         txtOverviewDetail.setText(movie.getOverview());
         double score = movie.getScore() * 10;
-        txtScoreAngkaDetail.setText(String.valueOf((int) score));
+        scoreDetail.setRating((float) ((score * 5) / 100));
 
         // Mengisi data image
-        String url = "https://image.tmdb.org/t/p/original" + movie.getPoster();
-        Glide.with(DetailMovieActivity.this).load(url).into(posterBanner);
+        String url = "https://image.tmdb.org/t/p/original" + movie.getBackdrop();
         Glide.with(DetailMovieActivity.this)
                 .load(url)
                 .listener(new RequestListener<Drawable>() {
@@ -128,7 +118,7 @@ public class DetailMovieActivity extends AppCompatActivity {
                         return false;
                     }
                 })
-                .into(posterDetail);
+                .into(posterBanner);
 
         // setOnClickListener untuk Button Back
         btnBack.setOnClickListener(new View.OnClickListener() {

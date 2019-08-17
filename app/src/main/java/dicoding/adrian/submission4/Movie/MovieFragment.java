@@ -67,10 +67,10 @@ public class MovieFragment extends Fragment {
         rvMovie = view.findViewById(R.id.rv_movie);
 
         // Layout Manager
-        rvMovie.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvMovie.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
         // Divider between item list
-        DividerItemDecoration itemDecorator = new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.VERTICAL);
+        DividerItemDecoration itemDecorator = new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.HORIZONTAL);
         itemDecorator.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(Objects.requireNonNull(getContext()), R.drawable.divider)));
         rvMovie.addItemDecoration(itemDecorator);
         rvMovie.setHasFixedSize(true);
@@ -128,7 +128,7 @@ public class MovieFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Toolbar Title
-        Objects.requireNonNull(getActivity()).setTitle(getString(R.string.movie));
+        Objects.requireNonNull(getActivity()).setTitle("");
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_movie, container, false);

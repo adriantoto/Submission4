@@ -42,13 +42,7 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.TvViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final TvViewHolder tvViewHolder, int position) {
-        tvViewHolder.textViewTitle.setText(mData.get(position).getTitle());
-        tvViewHolder.textViewOverview.setText(mData.get(position).getOverview());
-        String releaseDate = mData.get(position).getReleased();
-        String releasedYear = releaseDate.substring(0, 4);
-        tvViewHolder.textViewReleased.setText(releasedYear);
         double score = mData.get(position).getScore() * 10;
-        tvViewHolder.score.setRating((float) ((score * 5) / 100));
         tvViewHolder.textViewScore.setText(String.valueOf((int) score));
         String uri = "https://image.tmdb.org/t/p/original" + mData.get(position).getPoster();
         Glide.with(tvViewHolder.itemView.getContext())
@@ -74,22 +68,14 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.TvViewHolder> {
     }
 
     class TvViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewTitle;
         ImageView poster;
-        TextView textViewReleased;
-        TextView textViewOverview;
-        RatingBar score;
         TextView textViewScore;
         ProgressBar progressBarItemTv;
 
         TvViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.tv_item_title_tv);
             poster = itemView.findViewById(R.id.img_item_poster_tv);
-            textViewReleased = itemView.findViewById(R.id.tv_item_releasedYear_tv);
-            textViewOverview = itemView.findViewById(R.id.tv_item_overview_tv);
             textViewScore = itemView.findViewById(R.id.tv_item_scoreAngkaHome_tv);
-            score = itemView.findViewById(R.id.scoreHome_tv);
             progressBarItemTv = itemView.findViewById(R.id.progressBar_itemTv);
 
             itemView.setOnClickListener(new View.OnClickListener() {

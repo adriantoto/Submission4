@@ -11,8 +11,8 @@
     <string name="tv_show">Acara TV</string>
     <string name="change_language_settings">Ubah Pengaturan Bahasa</string>
     <string name="favorite">Kesukaan</string>
-    <string name="like">Menambahkan ke Daftar Kesukaan</string>
-    <string name="dislike">Menghapus dari Daftar Kesukaan</string>
-    <string name="FailedDislike">Gagal menghapus dari Daftar Kesukaan</string>
-    <string name="FailedLike">Gsgal menambahkan ke Daftar Kesukaan</string>
+    <string name="like">Menambahkan ke Kesukaan</string>
+    <string name="dislike">Menghapus dari Kesukaan</string>
+    <string name="FailedDislike">Gagal menghapus dari Kesukaan</string>
+    <string name="FailedLike">Gsgal menambahkan ke Kesukaan</string>
 </resources>

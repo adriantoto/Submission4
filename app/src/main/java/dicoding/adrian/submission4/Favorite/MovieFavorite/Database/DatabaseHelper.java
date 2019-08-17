@@ -16,6 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL)",
             DatabaseContract.TABLE_MOVIE,
             DatabaseContract.MovieColumns._ID,
@@ -23,7 +24,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             DatabaseContract.MovieColumns.POSTER,
             DatabaseContract.MovieColumns.OVERVIEW,
             DatabaseContract.MovieColumns.RELEASED,
-            DatabaseContract.MovieColumns.SCORE
+            DatabaseContract.MovieColumns.SCORE,
+            DatabaseContract.MovieColumns.BACKDROP
     );
 
     public DatabaseHelper(Context context) {

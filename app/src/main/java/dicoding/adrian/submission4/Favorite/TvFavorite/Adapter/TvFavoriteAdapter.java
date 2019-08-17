@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -74,13 +73,6 @@ public class TvFavoriteAdapter extends RecyclerView.Adapter<TvFavoriteAdapter.Tv
 
         // String and Number Value
         holder.tvTitle.setText(listTvs.get(position).getTitle());
-        holder.tvOverview.setText(listTvs.get(position).getOverview());
-        String releasedDate = listTvs.get(position).getReleased();
-        String releasedYear = releasedDate.substring(0, 4);
-        holder.tvReleased.setText(releasedYear);
-        double score = listTvs.get(position).getScore() * 10;
-        holder.tvScore.setText(String.valueOf((int) score));
-        holder.rbItemTvFavorite.setRating((float) ((score * 5) / 100));
 
         // Image Value
         String uri = "https://image.tmdb.org/t/p/original" + listTvs.get(position).getPoster();
@@ -127,8 +119,7 @@ public class TvFavoriteAdapter extends RecyclerView.Adapter<TvFavoriteAdapter.Tv
     }
 
     class TvFavoriteViewHolder extends RecyclerView.ViewHolder {
-        final TextView tvTitle, tvOverview, tvReleased, tvScore;
-        final RatingBar rbItemTvFavorite;
+        final TextView tvTitle;
         final ImageView ivPoster;
         final ProgressBar pgTv;
         final ConstraintLayout itemFavoriteTv;
@@ -136,10 +127,6 @@ public class TvFavoriteAdapter extends RecyclerView.Adapter<TvFavoriteAdapter.Tv
         TvFavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_item_title_favorite_tv);
-            tvOverview = itemView.findViewById(R.id.tv_item_overview_favorite_tv);
-            tvReleased = itemView.findViewById(R.id.tv_item_releasedYear_favorite_tv);
-            tvScore = itemView.findViewById(R.id.tv_item_scoreAngkaHome_favorite_tv);
-            rbItemTvFavorite = itemView.findViewById(R.id.scoreHome_favorite_tv);
             ivPoster = itemView.findViewById(R.id.img_item_poster_favorite_tv);
             pgTv = itemView.findViewById(R.id.progressBar_item_favorite_tv);
             itemFavoriteTv = itemView.findViewById(R.id.cv_item_favorite_tv);

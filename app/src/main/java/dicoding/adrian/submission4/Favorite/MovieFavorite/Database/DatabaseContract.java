@@ -11,6 +11,7 @@ public class DatabaseContract {
     static final class MovieColumns implements BaseColumns {
         static String TITLE = "title";
         static String POSTER = "poster";
+        static String BACKDROP = "backdrop";
         static String OVERVIEW = "overview";
         static String RELEASED = "released";
         static String SCORE = "score";

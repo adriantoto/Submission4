@@ -67,10 +67,10 @@ public class TvFragment extends Fragment {
         rvTv = view.findViewById(R.id.rv_tv);
 
         // Layout Manager
-        rvTv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvTv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
         // Divider between item list
-        DividerItemDecoration itemDecorator = new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.VERTICAL);
+        DividerItemDecoration itemDecorator = new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.HORIZONTAL);
         itemDecorator.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(Objects.requireNonNull(getContext()), R.drawable.divider)));
         rvTv.addItemDecoration(itemDecorator);
         rvTv.setHasFixedSize(true);
@@ -128,7 +128,7 @@ public class TvFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Toolbar Title
-        Objects.requireNonNull(getActivity()).setTitle(getString(R.string.tv_show));
+        Objects.requireNonNull(getActivity()).setTitle("");
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tv, container, false);
