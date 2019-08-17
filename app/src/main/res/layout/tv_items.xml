@@ -5,9 +5,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="1dp"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="@drawable/ripple_list_item"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:foreground="@drawable/ripple_list_item">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_container_item_tv"
