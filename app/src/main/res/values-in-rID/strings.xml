@@ -15,4 +15,10 @@
     <string name="dislike">Menghapus dari Kesukaan</string>
     <string name="FailedDislike">Gagal menghapus dari Kesukaan</string>
     <string name="FailedLike">Gsgal menambahkan ke Kesukaan</string>
+    <string name="choose_a_nmovie_for_today">Pilih film\nuntuk hari ini</string>
+    <string name="find_a_movie_that_interest_you">Cari film yang anda suka</string>
+    <string name="choose_a_ntv_show_for_today">Pilih acara TV\nuntuk hari ini</string>
+    <string name="find_a_tv_show_that_interest_you">Cari acara TV yang anda suka</string>
+    <string name="set_reminder">Atur pengingat</string>
+    <string name="settings">Pengaturan</string>
 </resources>

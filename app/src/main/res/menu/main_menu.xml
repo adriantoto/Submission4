@@ -4,16 +4,16 @@
     <item
         android:id="@+id/main_setting"
         android:icon="@drawable/ic_settings_lightgrey_24dp"
-        android:title="Settings"
+        android:title="@string/settings"
         app:showAsAction="ifRoom">
         <menu>
             <item
                 android:id="@+id/action_change_settings"
-                android:title="Change language"
+                android:title="@string/change_language_settings"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/main_reminder_settings"
-                android:title="Set reminder"
+                android:title="@string/set_reminder"
                 app:showAsAction="never" />
         </menu>
     </item>
