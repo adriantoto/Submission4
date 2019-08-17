@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -19,12 +20,20 @@ public class MainViewModelTv extends ViewModel {
 
     private static final String API_KEY = "b63ce35808c2461f46a92dc7707a9453";
     private MutableLiveData<ArrayList<TvItems>> listTvs = new MutableLiveData<>();
+    private String lang;
 
     void setTv() {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<TvItems> listItems = new ArrayList<>();
-        String url = "https://api.themoviedb.org/3/discover/tv?api_key=" + API_KEY + "&language=en-US";
 
+        String locale = Locale.getDefault().getDisplayLanguage();
+        if (locale.contains("English")) {
+            lang = "en-US";
+        } else if (locale.contains("Indonesia")) {
+            lang = "id";
+        }
+
+        String url = "https://api.themoviedb.org/3/discover/tv?api_key=" + API_KEY + "&language=" + lang;
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
