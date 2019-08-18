@@ -10,17 +10,18 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_movie_favorite"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:paddingBottom="99dp"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.25"
+        tools:layoutManager="android.support.v7.widget.LinearLayoutManager"
         tools:listitem="@layout/item_favorite_movie" />
 
 </android.support.constraint.ConstraintLayout>

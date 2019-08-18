@@ -123,7 +123,7 @@ public class TvFavoriteAdapter extends RecyclerView.Adapter<TvFavoriteAdapter.Tv
             super(itemView);
             ivPoster = itemView.findViewById(R.id.img_item_poster_favorite_tv);
             pgTv = itemView.findViewById(R.id.progressBar_item_favorite_tv);
-            itemFavoriteTv = itemView.findViewById(R.id.cv_item_favorite_tv);
+            itemFavoriteTv = itemView.findViewById(R.id.cv_favorite_tv);
         }
     }
 }

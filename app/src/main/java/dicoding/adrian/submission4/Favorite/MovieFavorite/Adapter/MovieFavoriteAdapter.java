@@ -122,7 +122,7 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
             super(itemView);
             ivPoster = itemView.findViewById(R.id.img_item_poster_favorite_movie);
             pgMovie = itemView.findViewById(R.id.progressBar_item_favorite_movie);
-            itemFavoriteMovie = itemView.findViewById(R.id.cv_item_favorite_movie);
+            itemFavoriteMovie = itemView.findViewById(R.id.cv_favorite_movie);
         }
     }
 }
