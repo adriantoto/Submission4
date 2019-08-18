@@ -6,7 +6,7 @@
     <string name="movie_catalogue">Movie Catalogue</string>
     <string name="movie">Movie</string>
     <string name="tv_show">TV Show</string>
-    <string name="change_language_settings">Change Language Settings</string>
+    <string name="change_language_settings">Change Language</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="favorite">Favorite</string>
