@@ -12,17 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Favorite.TvFavorite.DetailTvFavoriteActivity" />
-        <activity android:name=".Favorite.MovieFavorite.DetailMovieFavoriteActivity" />
-        <activity android:name=".TV.DetailTvActivity" />
-        <activity android:name=".Movie.DetailMovieActivity" />
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".SplashRightActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Favorite.TvFavorite.DetailTvFavoriteActivity" />
+        <activity android:name=".Favorite.MovieFavorite.DetailMovieFavoriteActivity" />
+        <activity android:name=".TV.DetailTvActivity" />
+        <activity android:name=".Movie.DetailMovieActivity" />
+        <activity android:name=".SplashActivity" />
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />

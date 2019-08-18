@@ -13,10 +13,9 @@
         android:id="@+id/toolbar_favorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@color/white"
+        android:background="@color/blue_sky"
         android:elevation="0dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -29,7 +28,7 @@
         android:id="@+id/tablayout_favorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/tab_bg"
         android:elevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,10 +36,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_favorite"
         app:layout_constraintVertical_bias="0.0"
-        app:tabGravity="fill"
-        app:tabIndicatorColor="@color/blue_donker"
+        app:tabGravity="center"
+        app:tabIndicatorColor="@color/white"
         app:tabMode="fixed"
-        app:tabTextColor="@color/black" />
+        app:tabTextColor="@color/white" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager_favorite"

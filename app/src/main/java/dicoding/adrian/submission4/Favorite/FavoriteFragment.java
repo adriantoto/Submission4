@@ -53,7 +53,7 @@ public class FavoriteFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Toolbar Title
-        Objects.requireNonNull(getActivity()).setTitle(getString(R.string.favorite));
+        Objects.requireNonNull(getActivity()).setTitle("");
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_favorite, container, false);

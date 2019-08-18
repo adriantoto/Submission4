@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#fff</color>
-    <color name="colorPrimaryDark">#fff</color>
-    <color name="colorAccent">#00008B</color>
+    <color name="colorPrimaryDark">#49beb7</color>
+    <color name="colorAccent">#49beb7</color>
     <color name="duskYellow">#ffc922</color>
     <color name="lightGrey">#d3d3d3</color>
     <color name="white">#fff</color>
@@ -13,4 +13,5 @@
     <color name="poster_banner_tint">#6F000000</color>
     <color name="blue_donker">#00008B</color>
     <color name="red_maroon">#830300</color>
+    <color name="blue_sky">#badfdb</color>
 </resources>
