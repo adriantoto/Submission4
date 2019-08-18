@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelperTv extends SQLiteOpenHelper {
 
-    public static String DATABASE_NAME = "dbtvapp";
+    public static String DATABASE_NAME = "";
 
     private static final int DATABASE_VERSION = 1;
 

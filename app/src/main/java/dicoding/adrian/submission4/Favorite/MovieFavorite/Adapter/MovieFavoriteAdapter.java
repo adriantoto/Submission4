@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -69,6 +70,10 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
     @Override
     public void onBindViewHolder(@NonNull final MovieFavoriteAdapter.MovieFavoriteViewHolder holder, int position) {
 
+        // String value
+        double score = listMovies.get(position).getScore() * 10;
+        holder.tvScore.setText(String.valueOf((int) score));
+
         // Image Value
         String uri = "https://image.tmdb.org/t/p/original" + listMovies.get(position).getPoster();
         Glide.with(holder.itemView.getContext())
@@ -117,9 +122,11 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
         final ImageView ivPoster;
         final ProgressBar pgMovie;
         final ConstraintLayout itemFavoriteMovie;
+        final TextView tvScore;
 
         MovieFavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvScore = itemView.findViewById(R.id.tv_item_scoreAngkaHome_favorite_movie);
             ivPoster = itemView.findViewById(R.id.img_item_poster_favorite_movie);
             pgMovie = itemView.findViewById(R.id.progressBar_item_favorite_movie);
             itemFavoriteMovie = itemView.findViewById(R.id.cv_favorite_movie);

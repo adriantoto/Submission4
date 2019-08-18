@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -70,6 +71,10 @@ public class TvFavoriteAdapter extends RecyclerView.Adapter<TvFavoriteAdapter.Tv
     @Override
     public void onBindViewHolder(@NonNull final TvFavoriteAdapter.TvFavoriteViewHolder holder, int position) {
 
+        // String value
+        double score = listTvs.get(position).getScore() * 10;
+        holder.tvScore.setText(String.valueOf((int) score));
+
         // Image Value
         String uri = "https://image.tmdb.org/t/p/original" + listTvs.get(position).getPoster();
         Glide.with(holder.itemView.getContext())
@@ -118,12 +123,14 @@ public class TvFavoriteAdapter extends RecyclerView.Adapter<TvFavoriteAdapter.Tv
         final ImageView ivPoster;
         final ProgressBar pgTv;
         final ConstraintLayout itemFavoriteTv;
+        final TextView tvScore;
 
         TvFavoriteViewHolder(@NonNull View itemView) {
             super(itemView);
             ivPoster = itemView.findViewById(R.id.img_item_poster_favorite_tv);
             pgTv = itemView.findViewById(R.id.progressBar_item_favorite_tv);
             itemFavoriteTv = itemView.findViewById(R.id.cv_favorite_tv);
+            tvScore = itemView.findViewById(R.id.tv_item_scoreAngkaHome_favorite_tv);
         }
     }
 }
