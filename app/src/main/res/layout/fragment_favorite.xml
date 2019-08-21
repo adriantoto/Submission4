@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="?attr/actionBarSize"
     android:background="@color/white"
-    tools:context=".Favorite.FavoriteFragment">
+    tools:context=".favorite.FavoriteFragment">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_favorite"
@@ -43,7 +43,7 @@
         app:tabSelectedTextColor="@color/white"
         app:tabTextColor="@color/colorAccent" />
 
-    <dicoding.adrian.submission4.Favorite.NonSwipeableViewPager
+    <dicoding.adrian.submission4.favorite.NonSwipeableViewPager
         android:id="@+id/viewpager_favorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -11,9 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import dicoding.adrian.submission4.Favorite.FavoriteFragment;
-import dicoding.adrian.submission4.Movie.MovieFragment;
-import dicoding.adrian.submission4.TV.TvFragment;
+import dicoding.adrian.submission4.favorite.FavoriteFragment;
+import dicoding.adrian.submission4.movie.MovieFragment;
+import dicoding.adrian.submission4.tv.TvFragment;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
     android:background="@android:color/transparent"
-    tools:context=".Favorite.TvFavorite.TvFavoriteFragment">
+    tools:context=".favorite.TvFavorite.TvFavoriteFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_tv_favorite"

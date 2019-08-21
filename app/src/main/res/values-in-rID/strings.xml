@@ -4,8 +4,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="todo">TODO</string>
-    <string name="percent">%</string>
-    <string name="synopsys">SINOPSIS</string>
     <string name="movie_catalogue">Katalog Film</string>
     <string name="movie">Film</string>
     <string name="tv_show">Acara TV</string>

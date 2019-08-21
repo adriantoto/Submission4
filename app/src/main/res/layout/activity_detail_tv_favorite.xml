@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".Favorite.TvFavorite.DetailTvFavoriteActivity">
+    tools:context=".favorite.TvFavorite.DetailTvFavoriteActivity">
 
     <ImageView
         android:id="@+id/poster_banner_favorite_tv"

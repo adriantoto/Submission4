@@ -21,10 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Favorite.TvFavorite.DetailTvFavoriteActivity" />
-        <activity android:name=".Favorite.MovieFavorite.DetailMovieFavoriteActivity" />
-        <activity android:name=".TV.DetailTvActivity" />
-        <activity android:name=".Movie.DetailMovieActivity" />
+        <activity android:name=".favorite.TvFavorite.DetailTvFavoriteActivity" />
+        <activity android:name=".favorite.MovieFavorite.DetailMovieFavoriteActivity" />
+        <activity android:name=".tv.DetailTvActivity" />
+        <activity android:name=".movie.DetailMovieActivity" />
         <activity android:name=".SplashActivity" />
         <activity
             android:name=".MainActivity"
