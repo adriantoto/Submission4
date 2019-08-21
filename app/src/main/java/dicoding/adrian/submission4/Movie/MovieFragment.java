@@ -1,6 +1,5 @@
 package dicoding.adrian.submission4.Movie;
 
-
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -54,6 +53,8 @@ public class MovieFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Cast Widget
 
         // Toolbar Declaration
         Toolbar toolbarMovie = view.findViewById(R.id.toolbar_movie);

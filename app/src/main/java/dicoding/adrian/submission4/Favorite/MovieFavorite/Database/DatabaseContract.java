@@ -2,7 +2,7 @@ package dicoding.adrian.submission4.Favorite.MovieFavorite.Database;
 
 import android.provider.BaseColumns;
 
-public class DatabaseContract {
+class DatabaseContract {
 
     // To define some strings constant
 

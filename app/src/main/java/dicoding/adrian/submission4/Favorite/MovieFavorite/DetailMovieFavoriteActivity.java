@@ -33,10 +33,7 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity {
     public static final int REQUEST_UPDATE = 200;
     public static final int RESULT_DELETE = 301;
 
-    // isEdit Declaration
-    private boolean isEdit = false;
-
-    /// Position Variable
+    // Position Variable
     private int position;
 
     // Default Values
@@ -94,9 +91,6 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity {
         // Menerima Intent Movie dan Positon
         movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
         position = getIntent().getIntExtra(EXTRA_POSITION, 0);
-        if (position > 0) {
-            isEdit = true;
-        }
 
         // Mengisi data String
         txtTitleDetail.setText(movie.getTitle());

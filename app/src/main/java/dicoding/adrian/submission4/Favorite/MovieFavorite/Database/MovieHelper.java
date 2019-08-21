@@ -93,17 +93,6 @@ public class MovieHelper {
         return database.insert(DATABASE_TABLE, null, args);
     }
 
-    public int updateMovie(MovieItems movieItems) {
-        ContentValues args = new ContentValues();
-        args.put(TITLE, movieItems.getTitle());
-        args.put(POSTER, movieItems.getPoster());
-        args.put(BACKDROP, movieItems.getBackdrop());
-        args.put(OVERVIEW, movieItems.getOverview());
-        args.put(RELEASED, movieItems.getReleased());
-        args.put(SCORE, movieItems.getScore());
-        return database.update(DATABASE_TABLE, args, _ID + "= '" + movieItems.getId() + "'", null);
-    }
-
     public int deleteMovie(int id) {
         return database.delete(TABLE_MOVIE, _ID + " = '" + id + "'", null);
     }

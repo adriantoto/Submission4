@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static String DATABASE_NAME = "";
+    private static String DATABASE_NAME = "dbmovieapp";
 
     private static final int DATABASE_VERSION = 1;
 
@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             DatabaseContract.MovieColumns.BACKDROP
     );
 
-    public DatabaseHelper(Context context) {
+    DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

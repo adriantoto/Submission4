@@ -95,17 +95,6 @@ public class TvHelper {
         return database.insert(DATABASE_TABLE, null, args);
     }
 
-    public int updateTv(TvItems tvItems) {
-        ContentValues args = new ContentValues();
-        args.put(TITLE_TV, tvItems.getTitle());
-        args.put(POSTER_TV, tvItems.getPoster());
-        args.put(BACKDROP_TV, tvItems.getBackdrop());
-        args.put(OVERVIEW_TV, tvItems.getOverview());
-        args.put(RELEASED_TV, tvItems.getReleased());
-        args.put(SCORE_TV, tvItems.getScore());
-        return database.update(DATABASE_TABLE, args, _ID + "= '" + tvItems.getId() + "'", null);
-    }
-
     public int deleteTv(int id) {
         return database.delete(TABLE_TV, _ID + " = '" + id + "'", null);
     }

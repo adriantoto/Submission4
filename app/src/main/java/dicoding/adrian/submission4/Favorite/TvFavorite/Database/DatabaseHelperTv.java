@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelperTv extends SQLiteOpenHelper {
 
-    public static String DATABASE_NAME = "";
+    private static String DATABASE_NAME = "dbtvapp";
 
     private static final int DATABASE_VERSION = 1;
 
@@ -28,7 +28,7 @@ public class DatabaseHelperTv extends SQLiteOpenHelper {
             DatabaseContractTv.TvColumns.SCORE_TV
     );
 
-    public DatabaseHelperTv(Context context) {
+    DatabaseHelperTv(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
