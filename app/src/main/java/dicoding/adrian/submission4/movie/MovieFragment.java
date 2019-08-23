@@ -16,14 +16,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -64,30 +65,28 @@ public class MovieFragment extends Fragment {
         // Cast Layout
         final ConstraintLayout mainLayout = view.findViewById(R.id.container_fragment_movie);
 
-        // Set The Movies
-        mainViewModelMovie.setMovie();
-
         // Cast Widget
         final EditText etSearch = view.findViewById(R.id.search_movie);
-        ImageButton btnSeach = view.findViewById(R.id.btn_search_movie);
 
-        // On Click for Search Button
-        btnSeach.setOnClickListener(new View.OnClickListener() {
+        // OnEditorActionListener for Edit Text
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void onClick(View v) {
-                // Keyboard hide after click the button
-                InputMethodManager imm = (InputMethodManager) Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
-                // Movie input
-                String movie = etSearch.getText().toString().trim();
-                // Search Movie
-                mainViewModelMovie.searchMovie(movie);
-                progressBar.setVisibility(View.VISIBLE);
-                // If input is empty
-                if (TextUtils.isEmpty(movie)) {
-                    Toast.makeText(getActivity(), "Field can't be empty", Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    // Keyboard hide after click the button
+                    InputMethodManager imm = (InputMethodManager) Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
+                    // Movie input
+                    String movie = etSearch.getText().toString().trim();
+                    // Search Movie
+                    mainViewModelMovie.searchMovie(movie);
+                    progressBar.setVisibility(View.VISIBLE);
+                    // If input is empty
+                    if (TextUtils.isEmpty(movie)) {
+                        progressBar.setVisibility(View.GONE);
+                    }
                 }
+                return false;
             }
         });
 
@@ -144,6 +143,9 @@ public class MovieFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        // Set The Movies
+        mainViewModelMovie.setMovie();
 
         // Observer
         mainViewModelMovie.getMovies().observe(Objects.requireNonNull(getActivity()), getMovies);
