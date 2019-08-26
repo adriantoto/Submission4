@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4;
+package dicoding.adrian.submission4.basic;
 
 import android.content.Intent;
 import android.provider.Settings;
@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import dicoding.adrian.submission4.R;
 import dicoding.adrian.submission4.favorite.FavoriteFragment;
+import dicoding.adrian.submission4.features.ReminderActivity;
 import dicoding.adrian.submission4.movie.MovieFragment;
 import dicoding.adrian.submission4.tv.TvFragment;
 
@@ -89,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_change_settings) {
             Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            startActivity(mIntent);
+        } else if (item.getItemId() == R.id.main_reminder_settings) {
+            Intent mIntent = new Intent(MainActivity.this, ReminderActivity.class);
             startActivity(mIntent);
         }
         return super.onOptionsItemSelected(item);

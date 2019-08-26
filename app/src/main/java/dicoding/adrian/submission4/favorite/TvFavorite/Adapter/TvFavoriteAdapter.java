@@ -22,7 +22,7 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
-import dicoding.adrian.submission4.CustomOnItemClickListener;
+import dicoding.adrian.submission4.basic.CustomOnItemClickListener;
 
 import dicoding.adrian.submission4.favorite.TvFavorite.DetailTvFavoriteActivity;
 import dicoding.adrian.submission4.R;

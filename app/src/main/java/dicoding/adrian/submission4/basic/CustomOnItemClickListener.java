@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4;
+package dicoding.adrian.submission4.basic;
 
 import android.view.View;
 

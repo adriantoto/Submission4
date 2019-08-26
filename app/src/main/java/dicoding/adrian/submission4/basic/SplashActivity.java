@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4;
+package dicoding.adrian.submission4.basic;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import dicoding.adrian.submission4.R;
 
 public class SplashActivity extends AppCompatActivity {
 

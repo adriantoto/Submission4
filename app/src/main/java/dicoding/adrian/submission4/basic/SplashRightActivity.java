@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4;
+package dicoding.adrian.submission4.basic;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

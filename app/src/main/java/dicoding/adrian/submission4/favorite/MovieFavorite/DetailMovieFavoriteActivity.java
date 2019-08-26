@@ -22,7 +22,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
 import dicoding.adrian.submission4.favorite.MovieFavorite.Database.MovieHelper;
-import dicoding.adrian.submission4.MainActivity;
+import dicoding.adrian.submission4.basic.MainActivity;
 import dicoding.adrian.submission4.movie.MovieAdapter;
 import dicoding.adrian.submission4.movie.MovieItems;
 import dicoding.adrian.submission4.R;

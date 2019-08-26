@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".features.ReminderActivity"></activity>
         <activity
-            android:name=".SplashRightActivity"
+            android:name=".basic.SplashRightActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,9 +26,9 @@
         <activity android:name=".favorite.MovieFavorite.DetailMovieFavoriteActivity" />
         <activity android:name=".tv.DetailTvActivity" />
         <activity android:name=".movie.DetailMovieActivity" />
-        <activity android:name=".SplashActivity" />
+        <activity android:name=".basic.SplashActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".basic.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
     </application>
 
