@@ -18,7 +18,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainViewModelTv extends ViewModel {
 
-    private static final String API_KEY = "f733887094fe514518e8087c86f26c59";
+    private static final String API_KEY = "";
     private MutableLiveData<ArrayList<TvItems>> listTvs = new MutableLiveData<>();
     private String lang;
 
