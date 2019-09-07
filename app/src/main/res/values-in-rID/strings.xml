@@ -19,4 +19,9 @@
     <string name="find_a_tv_show_that_interest_you">Cari acara TV yang anda suka</string>
     <string name="set_reminder">Atur pengingat</string>
     <string name="settings">Pengaturan</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="check_daily">Cek film yang akan anda tonton hari ini di app kami!</string>
+    <string name="release_reminder">Pengingat Rilis</string>
+    <string name="a_reminder_for_showing_the_movie_nthat_released_today">Sebuah pengingat film\nyang rilis hari ini</string>
+    <string name="a_reminder_to_return_to_the_app">Sebuah pengingat untuk\nkembali ke app</string>
 </resources>

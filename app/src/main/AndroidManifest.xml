@@ -3,6 +3,8 @@
     package="dicoding.adrian.submission4">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.ReminderActivity"></activity>
+        <activity android:name=".features.reminder.ReminderActivity"></activity>
         <activity
             android:name=".basic.SplashRightActivity"
             android:theme="@style/SplashTheme">
@@ -30,6 +32,10 @@
         <activity
             android:name=".basic.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <receiver
+            android:name=".features.reminder.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".features.ReminderActivity">
+    tools:context=".features.reminder.ReminderActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_reminder"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:text="Release Reminder"
+        android:text="@string/release_reminder"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="A reminder for showing the movie\nthat released today"
+        android:text="@string/a_reminder_for_showing_the_movie_nthat_released_today"
         android:textAlignment="textStart"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:text="Daily Reminder"
+        android:text="@string/daily_reminder"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="A reminder to return to the app"
+        android:text="@string/a_reminder_to_return_to_the_app"
         android:textAlignment="textStart"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

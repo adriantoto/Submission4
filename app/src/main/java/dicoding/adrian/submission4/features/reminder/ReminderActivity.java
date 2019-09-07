@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.features;
+package dicoding.adrian.submission4.features.reminder;
 
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -17,10 +17,16 @@ public class ReminderActivity extends AppCompatActivity {
     Switch swRelease;
     Switch swDaily;
 
+    // Alarm Receiver Declaration
+    private AlarmReceiver alarmReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder);
+
+        // Alarm Receiver Instance
+        alarmReceiver = new AlarmReceiver();
 
         // Set Toolbar as Action Bar
         Toolbar toolbar = findViewById(R.id.toolbar_reminder);
@@ -48,14 +54,17 @@ public class ReminderActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     // The Activity if True
-                    Toast.makeText(ReminderActivity.this, "Daily reminder active", Toast.LENGTH_SHORT).show();
+                    String repeatTime = "07:00";
+                    String repeatMessage = ReminderActivity.this.getString(R.string.check_daily);
+                    alarmReceiver.setRepeatingAlarm(ReminderActivity.this, AlarmReceiver.TYPE_REPEATING,
+                            repeatTime, repeatMessage);
                     // Save The Switch's State Using Shared Preferences
                     SharedPreferences.Editor editor = getSharedPreferences("dicoding.submission4.adrian", MODE_PRIVATE).edit();
                     editor.putBoolean("daily", true);
                     editor.apply();
                 } else {
                     // The Activity if False
-                    Toast.makeText(ReminderActivity.this, "Daily reminder deactive", Toast.LENGTH_SHORT).show();
+                    alarmReceiver.cancelAlarm(ReminderActivity.this, AlarmReceiver.TYPE_REPEATING);
                     // Save The Switch's State Using Shared Preferences
                     SharedPreferences.Editor editor = getSharedPreferences("dicoding.submission4.adrian", MODE_PRIVATE).edit();
                     editor.putBoolean("daily", false);

@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import dicoding.adrian.submission4.R;
 import dicoding.adrian.submission4.favorite.FavoriteFragment;
-import dicoding.adrian.submission4.features.ReminderActivity;
+import dicoding.adrian.submission4.features.reminder.ReminderActivity;
 import dicoding.adrian.submission4.movie.MovieFragment;
 import dicoding.adrian.submission4.tv.TvFragment;
 
