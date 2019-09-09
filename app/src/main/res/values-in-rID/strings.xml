@@ -24,4 +24,5 @@
     <string name="release_reminder">Pengingat Rilis</string>
     <string name="a_reminder_for_showing_the_movie_nthat_released_today">Sebuah pengingat film\nyang rilis hari ini</string>
     <string name="a_reminder_to_return_to_the_app">Sebuah pengingat untuk\nkembali ke app</string>
+    <string name="hasReleased">\u0020telah rilis hari ini!</string>
 </resources>

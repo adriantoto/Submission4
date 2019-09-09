@@ -36,6 +36,10 @@
             android:name=".features.reminder.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
+        <receiver
+            android:name=".features.reminder.AlarmReceiverRelease"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

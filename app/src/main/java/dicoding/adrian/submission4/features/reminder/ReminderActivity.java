@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import dicoding.adrian.submission4.R;
 
@@ -19,6 +18,7 @@ public class ReminderActivity extends AppCompatActivity {
 
     // Alarm Receiver Declaration
     private AlarmReceiver alarmReceiver;
+    private AlarmReceiverRelease alarmReceiverRelease;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class ReminderActivity extends AppCompatActivity {
 
         // Alarm Receiver Instance
         alarmReceiver = new AlarmReceiver();
+        alarmReceiverRelease = new AlarmReceiverRelease();
 
         // Set Toolbar as Action Bar
         Toolbar toolbar = findViewById(R.id.toolbar_reminder);
@@ -79,14 +80,15 @@ public class ReminderActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     // The Activity if True
-                    Toast.makeText(ReminderActivity.this, "Release reminder active", Toast.LENGTH_SHORT).show();
+                    String repeatTime = "14:22";
+                    alarmReceiverRelease.setRepeatingAlarm(ReminderActivity.this, repeatTime);
                     // Save The Switch's State Using Shared Preferences
                     SharedPreferences.Editor editor = getSharedPreferences("dicoding.submission4.adrian", MODE_PRIVATE).edit();
                     editor.putBoolean("release", true);
                     editor.apply();
                 } else {
                     // The Activity if False
-                    Toast.makeText(ReminderActivity.this, "Release reminder deactive", Toast.LENGTH_SHORT).show();
+                    alarmReceiverRelease.cancelAlarm(ReminderActivity.this, AlarmReceiverRelease.TYPE_REPEATING);
                     // Save The Switch's State Using Shared Preferences
                     SharedPreferences.Editor editor = getSharedPreferences("dicoding.submission4.adrian", MODE_PRIVATE).edit();
                     editor.putBoolean("release", false);

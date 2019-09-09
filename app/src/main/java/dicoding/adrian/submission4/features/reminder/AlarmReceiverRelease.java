@@ -13,53 +13,84 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
+import cz.msebera.android.httpclient.Header;
 import dicoding.adrian.submission4.R;
 import dicoding.adrian.submission4.basic.SplashRightActivity;
 
-public class AlarmReceiver extends BroadcastReceiver {
+public class AlarmReceiverRelease extends BroadcastReceiver {
 
     // Tags
     public static final String TYPE_ONE_TIME = "OneTimeAlarm";
     public static final String TYPE_REPEATING = "RepeatingAlarm";
-    public static final String EXTRA_MESSAGE = "message";
-    public static final String EXTRA_TYPE = "type";
 
-    // Ids
-    private final int ID_ONETIME = 100;
-    private final int ID_REPEATING = 101;
+    private final int ID_REPEATING = 201;
 
     // Constructor
-    public AlarmReceiver() {
+    public AlarmReceiverRelease() {
     }
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(final Context context, Intent intent) {
 
-        // Get type and message from ReminderActivity
-        String type = intent.getStringExtra(EXTRA_TYPE);
-        String message = intent.getStringExtra(EXTRA_MESSAGE);
+        // Get today's date
+        Date rawDate = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String date = df.format(rawDate);
 
-        // Put tags as title and id as notifId
-        String title = context.getString(R.string.daily_reminder);
-        int notifId = type.equalsIgnoreCase(TYPE_ONE_TIME) ? ID_ONETIME : ID_REPEATING;
+        // API Key
+        final String API_KEY = "f733887094fe514518e8087c86f26c59";
 
-        // Show notiffcation
-        showAlarmNotification(context, title, message, notifId);
+        // URL
+        String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&primary_release_date.gte=" + date + "&primary_release_date.lte=" + date;
+
+        // Async HTTP
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String result = new String(responseBody);
+                try {
+                    JSONObject responseObject = new JSONObject(result);
+                    String movieReleaseTitle = responseObject.getJSONArray("results").getJSONObject(1).getString("title");
+                    // Get message
+                    String hasReleased = context.getString(R.string.hasReleased);
+                    String message = movieReleaseTitle + hasReleased;
+                    // Put title and id as notifId
+                    String title = context.getString(R.string.release_reminder);
+                    // Show notiffcation
+                    showAlarmNotification(context, title, message);
+                } catch (Exception e) {
+                    Log.d("Exception", e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Log.d("onFailure", error.getMessage());
+            }
+        });
     }
 
-    private void showAlarmNotification(Context context, String title, String message, int notifId) {
+    private void showAlarmNotification(Context context, String title, String message) {
 
         // Notification Channel
-        String CHANNEL_ID = "Channel_1";
-        String CHANNEL_NAME = "AlarmManager channel";
+        String CHANNEL_ID = "Channel_2";
+        String CHANNEL_NAME = "ReleaseAlarmManager channel";
 
         // NotificationManager Instance
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -81,6 +112,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setSound(alarmSound)
                 .setAutoCancel(true);
 
+        // Upper Version
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
@@ -100,19 +132,17 @@ public class AlarmReceiver extends BroadcastReceiver {
         Notification notification = builder.build();
 
         if (notificationManagerCompat != null) {
-            notificationManagerCompat.notify(notifId, notification);
+            notificationManagerCompat.notify(201, notification);
         }
     }
 
-    public void setRepeatingAlarm(Context context, String type, String time, String message) {
+    public void setRepeatingAlarm(Context context, String time) {
 
         String TIME_FORMAT = "HH:mm";
         if (isDateInvalid(time, TIME_FORMAT)) return;
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra(EXTRA_MESSAGE, message);
-        intent.putExtra(EXTRA_TYPE, type);
+        Intent intent = new Intent(context, AlarmReceiverRelease.class);
 
         String[] timeArray = time.split(":");
 
@@ -126,12 +156,16 @@ public class AlarmReceiver extends BroadcastReceiver {
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
 
-        Toast.makeText(context, "Daily Reminder is enabled", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Release Reminder is enabled", Toast.LENGTH_SHORT).show();
     }
 
     public void cancelAlarm(Context context, String type) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, AlarmReceiver.class);
+        Intent intent = new Intent(context, AlarmReceiverRelease.class);
+
+        // Ids
+        int ID_ONETIME = 200;
+
         int requestCode = type.equalsIgnoreCase(TYPE_ONE_TIME) ? ID_ONETIME : ID_REPEATING;
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0);
         pendingIntent.cancel();
@@ -140,7 +174,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             alarmManager.cancel(pendingIntent);
         }
 
-        Toast.makeText(context, "Daily Reminder is disabled", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Release Reminder is disabled", Toast.LENGTH_SHORT).show();
     }
 
     public boolean isDateInvalid(String date, String format) {
