@@ -80,7 +80,7 @@ public class ReminderActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     // The Activity if True
-                    String repeatTime = "14:22";
+                    String repeatTime = "08:00";
                     alarmReceiverRelease.setRepeatingAlarm(ReminderActivity.this, repeatTime);
                     // Save The Switch's State Using Shared Preferences
                     SharedPreferences.Editor editor = getSharedPreferences("dicoding.submission4.adrian", MODE_PRIVATE).edit();

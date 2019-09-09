@@ -66,14 +66,20 @@ public class AlarmReceiverRelease extends BroadcastReceiver {
                 String result = new String(responseBody);
                 try {
                     JSONObject responseObject = new JSONObject(result);
-                    String movieReleaseTitle = responseObject.getJSONArray("results").getJSONObject(1).getString("title");
+                    String movieReleaseTitle1 = responseObject.getJSONArray("results").getJSONObject(1).getString("title");
+                    String movieReleaseTitle2 = responseObject.getJSONArray("results").getJSONObject(2).getString("title");
+                    String movieReleaseTitle3 = responseObject.getJSONArray("results").getJSONObject(3).getString("title");
                     // Get message
                     String hasReleased = context.getString(R.string.hasReleased);
-                    String message = movieReleaseTitle + hasReleased;
+                    String message1 = movieReleaseTitle1 + hasReleased;
+                    String message2 = movieReleaseTitle2 + hasReleased;
+                    String message3 = movieReleaseTitle3 + hasReleased;
                     // Put title and id as notifId
                     String title = context.getString(R.string.release_reminder);
-                    // Show notiffcation
-                    showAlarmNotification(context, title, message);
+                    // Show notification
+                    showAlarmNotification1(context, title, message1);
+                    showAlarmNotification2(context, title, message2);
+                    showAlarmNotification3(context, title, message3);
                 } catch (Exception e) {
                     Log.d("Exception", e.getMessage());
                 }
@@ -86,11 +92,11 @@ public class AlarmReceiverRelease extends BroadcastReceiver {
         });
     }
 
-    private void showAlarmNotification(Context context, String title, String message) {
+    private void showAlarmNotification1(Context context, String title, String message) {
 
         // Notification Channel
         String CHANNEL_ID = "Channel_2";
-        String CHANNEL_NAME = "ReleaseAlarmManager channel";
+        String CHANNEL_NAME = "ReleaseAlarmManager channel1";
 
         // NotificationManager Instance
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -133,6 +139,106 @@ public class AlarmReceiverRelease extends BroadcastReceiver {
 
         if (notificationManagerCompat != null) {
             notificationManagerCompat.notify(201, notification);
+        }
+    }
+
+    private void showAlarmNotification2(Context context, String title, String message) {
+
+        // Notification Channel
+        String CHANNEL_ID = "Channel_3";
+        String CHANNEL_NAME = "ReleaseAlarmManager channel2";
+
+        // NotificationManager Instance
+        NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Notification Intent
+        Intent notificationIntent = new Intent(context, SplashRightActivity.class);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
+
+        // Notification Properties Configuration
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                .setContentIntent(pendingIntent)
+                .setSmallIcon(R.drawable.ic_movie_logo)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setColor(ContextCompat.getColor(context, android.R.color.transparent))
+                .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
+                .setSound(alarmSound)
+                .setAutoCancel(true);
+
+        // Upper Version
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
+                    CHANNEL_NAME,
+                    NotificationManager.IMPORTANCE_DEFAULT);
+
+            channel.enableVibration(true);
+            channel.setVibrationPattern(new long[]{1000, 1000, 1000, 1000, 1000});
+
+            builder.setChannelId(CHANNEL_ID);
+
+            if (notificationManagerCompat != null) {
+                notificationManagerCompat.createNotificationChannel(channel);
+            }
+        }
+
+        Notification notification = builder.build();
+
+        if (notificationManagerCompat != null) {
+            notificationManagerCompat.notify(301, notification);
+        }
+    }
+
+    private void showAlarmNotification3(Context context, String title, String message) {
+
+        // Notification Channel
+        String CHANNEL_ID = "Channel_4";
+        String CHANNEL_NAME = "ReleaseAlarmManager channel3";
+
+        // NotificationManager Instance
+        NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Notification Intent
+        Intent notificationIntent = new Intent(context, SplashRightActivity.class);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
+
+        // Notification Properties Configuration
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                .setContentIntent(pendingIntent)
+                .setSmallIcon(R.drawable.ic_movie_logo)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setColor(ContextCompat.getColor(context, android.R.color.transparent))
+                .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
+                .setSound(alarmSound)
+                .setAutoCancel(true);
+
+        // Upper Version
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
+                    CHANNEL_NAME,
+                    NotificationManager.IMPORTANCE_DEFAULT);
+
+            channel.enableVibration(true);
+            channel.setVibrationPattern(new long[]{1000, 1000, 1000, 1000, 1000});
+
+            builder.setChannelId(CHANNEL_ID);
+
+            if (notificationManagerCompat != null) {
+                notificationManagerCompat.createNotificationChannel(channel);
+            }
+        }
+
+        Notification notification = builder.build();
+
+        if (notificationManagerCompat != null) {
+            notificationManagerCompat.notify(401, notification);
         }
     }
 
