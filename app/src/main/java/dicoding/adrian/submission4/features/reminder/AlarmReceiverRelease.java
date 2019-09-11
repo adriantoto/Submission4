@@ -25,7 +25,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
@@ -38,6 +37,7 @@ public class AlarmReceiverRelease extends BroadcastReceiver {
     public static final String TYPE_ONE_TIME = "OneTimeAlarm";
     public static final String TYPE_REPEATING = "RepeatingAlarm";
 
+    // ID Repeating
     private final int ID_REPEATING = 201;
 
     // Constructor
@@ -46,53 +46,9 @@ public class AlarmReceiverRelease extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
-
-        // Get today's date
-        Date rawDate = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        String date = df.format(rawDate);
-
-        // API Key
-        final String API_KEY = "f733887094fe514518e8087c86f26c59";
-
-        // URL
-        String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&primary_release_date.gte=" + date + "&primary_release_date.lte=" + date;
-
-        // Async HTTP
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get(url, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                String result = new String(responseBody);
-                try {
-                    JSONObject responseObject = new JSONObject(result);
-                    String movieReleaseTitle1 = responseObject.getJSONArray("results").getJSONObject(1).getString("title");
-                    String movieReleaseTitle2 = responseObject.getJSONArray("results").getJSONObject(2).getString("title");
-                    String movieReleaseTitle3 = responseObject.getJSONArray("results").getJSONObject(3).getString("title");
-                    // Get message
-                    String hasReleased = context.getString(R.string.hasReleased);
-                    String message1 = movieReleaseTitle1 + hasReleased;
-                    String message2 = movieReleaseTitle2 + hasReleased;
-                    String message3 = movieReleaseTitle3 + hasReleased;
-                    // Put title and id as notifId
-                    String title = context.getString(R.string.release_reminder);
-                    // Show notification
-                    showAlarmNotification1(context, title, message1);
-                    showAlarmNotification2(context, title, message2);
-                    showAlarmNotification3(context, title, message3);
-                } catch (Exception e) {
-                    Log.d("Exception", e.getMessage());
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Log.d("onFailure", error.getMessage());
-            }
-        });
     }
 
-    private void showAlarmNotification1(Context context, String title, String message) {
+    private void showAlarmNotification(Context context, String title, String message) {
 
         // Notification Channel
         String CHANNEL_ID = "Channel_2";
@@ -142,107 +98,7 @@ public class AlarmReceiverRelease extends BroadcastReceiver {
         }
     }
 
-    private void showAlarmNotification2(Context context, String title, String message) {
-
-        // Notification Channel
-        String CHANNEL_ID = "Channel_3";
-        String CHANNEL_NAME = "ReleaseAlarmManager channel2";
-
-        // NotificationManager Instance
-        NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // Notification Intent
-        Intent notificationIntent = new Intent(context, SplashRightActivity.class);
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
-
-        // Notification Properties Configuration
-        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.ic_movie_logo)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setColor(ContextCompat.getColor(context, android.R.color.transparent))
-                .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
-                .setSound(alarmSound)
-                .setAutoCancel(true);
-
-        // Upper Version
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                    CHANNEL_NAME,
-                    NotificationManager.IMPORTANCE_DEFAULT);
-
-            channel.enableVibration(true);
-            channel.setVibrationPattern(new long[]{1000, 1000, 1000, 1000, 1000});
-
-            builder.setChannelId(CHANNEL_ID);
-
-            if (notificationManagerCompat != null) {
-                notificationManagerCompat.createNotificationChannel(channel);
-            }
-        }
-
-        Notification notification = builder.build();
-
-        if (notificationManagerCompat != null) {
-            notificationManagerCompat.notify(301, notification);
-        }
-    }
-
-    private void showAlarmNotification3(Context context, String title, String message) {
-
-        // Notification Channel
-        String CHANNEL_ID = "Channel_4";
-        String CHANNEL_NAME = "ReleaseAlarmManager channel3";
-
-        // NotificationManager Instance
-        NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // Notification Intent
-        Intent notificationIntent = new Intent(context, SplashRightActivity.class);
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
-
-        // Notification Properties Configuration
-        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.ic_movie_logo)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setColor(ContextCompat.getColor(context, android.R.color.transparent))
-                .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
-                .setSound(alarmSound)
-                .setAutoCancel(true);
-
-        // Upper Version
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                    CHANNEL_NAME,
-                    NotificationManager.IMPORTANCE_DEFAULT);
-
-            channel.enableVibration(true);
-            channel.setVibrationPattern(new long[]{1000, 1000, 1000, 1000, 1000});
-
-            builder.setChannelId(CHANNEL_ID);
-
-            if (notificationManagerCompat != null) {
-                notificationManagerCompat.createNotificationChannel(channel);
-            }
-        }
-
-        Notification notification = builder.build();
-
-        if (notificationManagerCompat != null) {
-            notificationManagerCompat.notify(401, notification);
-        }
-    }
-
-    public void setRepeatingAlarm(Context context, String time) {
+    public void setRepeatingAlarm(final Context context, String time) {
 
         String TIME_FORMAT = "HH:mm";
         if (isDateInvalid(time, TIME_FORMAT)) return;
@@ -260,6 +116,43 @@ public class AlarmReceiverRelease extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, 0);
         if (alarmManager != null) {
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+            // Get today's date
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            String date = df.format(calendar.getTime());
+
+            // API Key
+            final String API_KEY = "f733887094fe514518e8087c86f26c59";
+
+            // URL
+            String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&primary_release_date.gte=" + date + "&primary_release_date.lte=" + date;
+
+            // Async HTTP
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.get(url, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                    String result = new String(responseBody);
+                    try {
+                        JSONObject responseObject = new JSONObject(result);
+                        String movieReleaseTitle = responseObject.getJSONArray("results").getJSONObject(1).getString("title");
+                        // Get message
+                        String hasReleased = context.getString(R.string.hasReleased);
+                        String message = movieReleaseTitle + hasReleased;
+                        // Put title and id as notifId
+                        String title = context.getString(R.string.release_reminder);
+                        // Show notification
+                        showAlarmNotification(context, title, message);
+                    } catch (Exception e) {
+                        Log.d("Exception", e.getMessage());
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                    Log.d("onFailure", error.getMessage());
+                }
+            });
         }
 
         Toast.makeText(context, "Release Reminder is enabled", Toast.LENGTH_SHORT).show();
