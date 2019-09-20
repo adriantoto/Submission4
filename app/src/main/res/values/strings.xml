@@ -24,4 +24,6 @@
     <string name="a_reminder_to_return_to_the_app">A reminder to return to the app</string>
     <string name="release_reminder">Release Reminder</string>
     <string name="hasReleased">\u0020has been released today!</string>
+    <string name="appwidget_text">FAVORITE MOVIES BANNER</string>
+    <string name="empty_text">NO DATA</string>
 </resources>

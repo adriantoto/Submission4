@@ -26,6 +26,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
 import dicoding.adrian.submission4.R;
+import dicoding.adrian.submission4.features.widget.ImageBannerWidget;
 
 import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.BACKDROP;
 import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.CONTENT_URI;

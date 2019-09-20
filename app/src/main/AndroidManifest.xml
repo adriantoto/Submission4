@@ -5,8 +5,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <permission android:name="dicoding.adrian.submission4.READ_DATABASE" android:protectionLevel="normal"/>
-    <permission android:name="dicoding.adrian.submission4.WRITE_DATABASE" android:protectionLevel="normal"/>
+
+    <permission
+        android:name="dicoding.adrian.submission4.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="dicoding.adrian.submission4.WRITE_DATABASE"
+        android:protectionLevel="normal" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +21,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.reminder.ReminderActivity"></activity>
+        <receiver android:name=".features.widget.ImageBannerWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/image_banner_widget_info" />
+        </receiver>
+
+        <activity android:name=".features.reminder.ReminderActivity" />
         <activity
             android:name=".basic.SplashRightActivity"
             android:theme="@style/SplashTheme">
@@ -34,6 +49,7 @@
         <activity
             android:name=".basic.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+
         <receiver
             android:name=".features.reminder.AlarmReceiver"
             android:enabled="true"
@@ -42,11 +58,17 @@
             android:name=".features.reminder.AlarmReceiverRelease"
             android:enabled="true"
             android:exported="true" />
+
         <provider
-            android:authorities="dicoding.adrian.submission4"
             android:name=".features.contentprovider.MovieProvider"
+            android:authorities="dicoding.adrian.submission4"
             android:exported="true"
             android:readPermission="dicoding.adrian.submission4.READ_DATABASE"
             android:writePermission="dicoding.adrian.submission4.WRITE_DATABASE" />
+
+        <service
+            android:name=".features.widget.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
+
 </manifest>
