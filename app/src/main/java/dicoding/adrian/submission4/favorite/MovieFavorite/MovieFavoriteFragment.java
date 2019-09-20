@@ -1,7 +1,8 @@
 package dicoding.adrian.submission4.favorite.MovieFavorite;
 
-
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,16 +15,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Objects;
 
 import dicoding.adrian.submission4.favorite.MovieFavorite.Adapter.MovieFavoriteAdapter;
-import dicoding.adrian.submission4.favorite.MovieFavorite.Database.MovieHelper;
+import dicoding.adrian.submission4.features.contentprovider.MappingHelper;
 import dicoding.adrian.submission4.movie.DetailMovieActivity;
 import dicoding.adrian.submission4.movie.MovieItems;
 import dicoding.adrian.submission4.R;
+
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.CONTENT_URI;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,9 +36,7 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
 
     // Widgets, Array, Adapter, Helper Variable Declaration
     RecyclerView rvFavoriteMovies;
-    ArrayList<MovieItems> movieItems;
     MovieFavoriteAdapter adapter;
-    MovieHelper movieHelper;
 
     // Default Value
     private static final String EXTRA_STATE = "EXTRA_STATE";
@@ -48,9 +50,6 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // MovieItems Instance
-        movieItems = new ArrayList<>();
-
         // Cast Recyclerview
         rvFavoriteMovies = view.findViewById(R.id.rv_movie_favorite);
 
@@ -63,22 +62,15 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
         rvFavoriteMovies.addItemDecoration(itemDecorator);
         rvFavoriteMovies.setHasFixedSize(true);
 
-        // MovieHelper Instance
-        movieHelper = new MovieHelper(getActivity());
-
-        // Open MovieHelper
-        movieHelper.open();
-
         // Adapter Instance
         adapter = new MovieFavoriteAdapter(getActivity());
-        adapter.notifyDataSetChanged();
 
         // Set Adapter
         rvFavoriteMovies.setAdapter(adapter);
 
         // SavedInstanceState
         if (savedInstanceState == null) {
-            new LoadMoviesAsync(movieHelper, this).execute();
+            new LoadMoviesAsync(Objects.requireNonNull(getActivity()).getApplicationContext(), this).execute();
         } else {
             ArrayList<MovieItems> list = savedInstanceState.getParcelableArrayList(EXTRA_STATE);
             if (list != null) {
@@ -111,17 +103,23 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
     }
 
     @Override
-    public void postExecute(ArrayList<MovieItems> movies) {
-        adapter.setListMovie(movies);
+    public void postExecute(Cursor movies) {
+        ArrayList<MovieItems> listMovies = MappingHelper.mapCursorToArrayList(movies);
+        if (listMovies.size() > 0) {
+            adapter.setListMovie(listMovies);
+        } else {
+            adapter.setListMovie(new ArrayList<MovieItems>());
+            Toast.makeText(getActivity(), "Tidak ada data saat ini", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private static class LoadMoviesAsync extends AsyncTask<Void, Void, ArrayList<MovieItems>> {
+    private static class LoadMoviesAsync extends AsyncTask<Void, Void, Cursor> {
 
-        private final WeakReference<MovieHelper> weakNoteHelper;
+        private final WeakReference<Context> weakContext;
         private final WeakReference<LoadMoviesCallback> weakCallback;
 
-        private LoadMoviesAsync(MovieHelper movieHelper, LoadMoviesCallback callback) {
-            weakNoteHelper = new WeakReference<>(movieHelper);
+        private LoadMoviesAsync(Context context, LoadMoviesCallback callback) {
+            weakContext = new WeakReference<>(context);
             weakCallback = new WeakReference<>(callback);
         }
 
@@ -132,12 +130,13 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
         }
 
         @Override
-        protected ArrayList<MovieItems> doInBackground(Void... voids) {
-            return weakNoteHelper.get().getAllMovies();
+        protected Cursor doInBackground(Void... voids) {
+            Context context = weakContext.get();
+            return context.getContentResolver().query(CONTENT_URI, null, null, null, null);
         }
 
         @Override
-        protected void onPostExecute(ArrayList<MovieItems> movies) {
+        protected void onPostExecute(Cursor movies) {
             super.onPostExecute(movies);
             weakCallback.get().postExecute(movies);
         }
@@ -166,6 +165,5 @@ public class MovieFavoriteFragment extends Fragment implements LoadMoviesCallbac
     @Override
     public void onDestroy() {
         super.onDestroy();
-        movieHelper.close();
     }
 }

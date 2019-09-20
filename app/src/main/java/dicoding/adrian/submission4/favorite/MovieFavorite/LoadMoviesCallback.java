@@ -1,10 +1,8 @@
 package dicoding.adrian.submission4.favorite.MovieFavorite;
 
-import java.util.ArrayList;
-
-import dicoding.adrian.submission4.movie.MovieItems;
+import android.database.Cursor;
 
 public interface LoadMoviesCallback {
     void preExecute();
-    void postExecute(ArrayList<MovieItems> movies);
+    void postExecute(Cursor movies);
 }

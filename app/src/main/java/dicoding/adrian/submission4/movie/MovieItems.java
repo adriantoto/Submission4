@@ -1,9 +1,14 @@
 package dicoding.adrian.submission4.movie;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.json.JSONObject;
+
+import dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract;
+
+import static android.provider.BaseColumns._ID;
 
 public class MovieItems implements Parcelable {
 
@@ -110,6 +115,26 @@ public class MovieItems implements Parcelable {
     }
 
     public MovieItems() {
+    }
+
+    public MovieItems(int id, String title, String released, String poster, String overview, String backdrop, double score) {
+        this.id = id;
+        this.title = title;
+        this.released = released;
+        this.poster = poster;
+        this.overview = overview;
+        this.backdrop = backdrop;
+        this.score = score;
+    }
+
+    public MovieItems(Cursor cursor) {
+        this.id = DatabaseContract.getColumnInt(cursor, _ID);
+        this.title = DatabaseContract.getColumnString(cursor, DatabaseContract.MovieColumns.TITLE);
+        this.released = DatabaseContract.getColumnString(cursor, DatabaseContract.MovieColumns.RELEASED);
+        this.poster = DatabaseContract.getColumnString(cursor, DatabaseContract.MovieColumns.POSTER);
+        this.overview = DatabaseContract.getColumnString(cursor, DatabaseContract.MovieColumns.OVERVIEW);
+        this.backdrop = DatabaseContract.getColumnString(cursor, DatabaseContract.MovieColumns.BACKDROP);
+        this.score = DatabaseContract.getColumnDouble(cursor, DatabaseContract.MovieColumns.SCORE);
     }
 
     private MovieItems(Parcel in) {

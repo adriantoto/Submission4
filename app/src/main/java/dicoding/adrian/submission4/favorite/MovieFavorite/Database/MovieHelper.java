@@ -18,9 +18,10 @@ import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.Databa
 import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.RELEASED;
 import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.SCORE;
 import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.TITLE;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.TABLE_MOVIE;
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.TABLE_MOVIE;
 
 public class MovieHelper {
+
     private static final String DATABASE_TABLE = TABLE_MOVIE;
     private static DatabaseHelper dataBaseHelper;
     private static MovieHelper INSTANCE;
@@ -52,14 +53,15 @@ public class MovieHelper {
             database.close();
     }
 
-    public ArrayList<MovieItems> getAllMovies() {
+    public ArrayList<MovieItems> query() {
         ArrayList<MovieItems> arrayList = new ArrayList<>();
-        Cursor cursor = database.query(DATABASE_TABLE, null,
+        Cursor cursor = database.query(DATABASE_TABLE,
                 null,
                 null,
                 null,
                 null,
-                _ID + " ASC",
+                null,
+                _ID + " DESC",
                 null);
         cursor.moveToFirst();
         MovieItems movieItems;
@@ -82,18 +84,50 @@ public class MovieHelper {
         return arrayList;
     }
 
-    public long insertMovie(MovieItems movieItems) {
-        ContentValues args = new ContentValues();
-        args.put(TITLE, movieItems.getTitle());
-        args.put(POSTER, movieItems.getPoster());
-        args.put(BACKDROP, movieItems.getBackdrop());
-        args.put(OVERVIEW, movieItems.getOverview());
-        args.put(RELEASED, movieItems.getReleased());
-        args.put(SCORE, movieItems.getScore());
-        return database.insert(DATABASE_TABLE, null, args);
+    public long insert(MovieItems movieItems) {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(TITLE, movieItems.getTitle());
+        initialValues.put(POSTER, movieItems.getPoster());
+        initialValues.put(BACKDROP, movieItems.getBackdrop());
+        initialValues.put(OVERVIEW, movieItems.getOverview());
+        initialValues.put(RELEASED, movieItems.getReleased());
+        initialValues.put(SCORE, movieItems.getScore());
+        return database.insert(DATABASE_TABLE, null, initialValues);
     }
 
-    public int deleteMovie(int id) {
+    public int delete(int id) {
         return database.delete(TABLE_MOVIE, _ID + " = '" + id + "'", null);
+    }
+
+    public Cursor queryByIdProvider(String id) {
+        return database.query(DATABASE_TABLE, null
+                , _ID + " = ?"
+                , new String[]{id}
+                , null
+                , null
+                , null
+                , null);
+    }
+
+    public Cursor queryProvider() {
+        return database.query(DATABASE_TABLE
+                , null
+                , null
+                , null
+                , null
+                , null
+                , _ID + " ASC");
+    }
+
+    public long insertProvider(ContentValues values) {
+        return database.insert(DATABASE_TABLE, null, values);
+    }
+
+    public int updateProvider(String id, ContentValues values) {
+        return database.update(DATABASE_TABLE, values, _ID + " = ?", new String[]{id});
+    }
+
+    public int deleteProvider(String id) {
+        return database.delete(DATABASE_TABLE, _ID + " = ?", new String[]{id});
     }
 }

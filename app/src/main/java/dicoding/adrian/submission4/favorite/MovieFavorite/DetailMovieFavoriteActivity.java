@@ -1,7 +1,10 @@
 package dicoding.adrian.submission4.favorite.MovieFavorite;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,11 +24,18 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
-import dicoding.adrian.submission4.favorite.MovieFavorite.Database.MovieHelper;
+import java.util.Objects;
+
 import dicoding.adrian.submission4.basic.MainActivity;
-import dicoding.adrian.submission4.movie.MovieAdapter;
 import dicoding.adrian.submission4.movie.MovieItems;
 import dicoding.adrian.submission4.R;
+
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.BACKDROP;
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.OVERVIEW;
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.POSTER;
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.RELEASED;
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.SCORE;
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.TITLE;
 
 public class DetailMovieFavoriteActivity extends AppCompatActivity {
 
@@ -39,12 +49,6 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity {
     // Default Values
     public static final String EXTRA_MOVIE = "extra_movie";
     public static final String EXTRA_POSITION = "extra_position";
-
-    // Database Declaration
-    private MovieHelper movieHelper;
-
-    // Adaoter Declaration
-    MovieAdapter adapter;
 
     // Instance Movie Items
     private MovieItems movie;
@@ -62,14 +66,6 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie_favorite);
-
-        // Movie Helper Instance
-        movieHelper = MovieHelper.getInstance(getApplicationContext());
-        movieHelper.open();
-
-        // Adapter Instance
-        adapter = new MovieAdapter();
-        adapter.notifyDataSetChanged();
 
         // Translucent Status Bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -90,7 +86,21 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity {
 
         // Menerima Intent Movie dan Positon
         movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
-        position = getIntent().getIntExtra(EXTRA_POSITION, 0);
+        if (movie != null) {
+            position = getIntent().getIntExtra(EXTRA_POSITION, 0);
+        } else {
+            movie = new MovieItems();
+        }
+
+        Uri uri = getIntent().getData();
+
+        if (uri != null) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) movie = new MovieItems(cursor);
+                cursor.close();
+            }
+        }
 
         // Mengisi data String
         txtTitleDetail.setText(movie.getTitle());
@@ -129,20 +139,26 @@ public class DetailMovieFavoriteActivity extends AppCompatActivity {
         btnDislike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                long result = movieHelper.deleteMovie(movie.getId());
-                if (result > 0) {
-                    Intent intent = new Intent(DetailMovieFavoriteActivity.this, MainActivity.class);
-                    intent.putExtra(EXTRA_POSITION, position);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivityForResult(intent, REQUEST_UPDATE);
-                    setResult(RESULT_DELETE);
-                    finish();
-                    String remove = getString(R.string.dislike);
-                    Toast.makeText(DetailMovieFavoriteActivity.this, remove, Toast.LENGTH_SHORT).show();
-                } else {
-                    String failedRemove = getString(R.string.FailedDislike);
-                    Toast.makeText(DetailMovieFavoriteActivity.this, failedRemove, Toast.LENGTH_SHORT).show();
-                }
+                Intent intent = new Intent(DetailMovieFavoriteActivity.this, MainActivity.class);
+                intent.putExtra(EXTRA_POSITION, position);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                ContentValues values = new ContentValues();
+                values.put(TITLE, movie.getTitle());
+                values.put(POSTER, movie.getPoster());
+                values.put(OVERVIEW, movie.getOverview());
+                values.put(SCORE, movie.getScore());
+                values.put(RELEASED, movie.getReleased());
+                values.put(BACKDROP, movie.getBackdrop());
+
+                startActivityForResult(intent, REQUEST_UPDATE);
+                setResult(RESULT_DELETE);
+
+                getContentResolver().delete(Objects.requireNonNull(getIntent().getData()), null, null);
+
+                finish();
+                String remove = getString(R.string.dislike);
+                Toast.makeText(DetailMovieFavoriteActivity.this, remove, Toast.LENGTH_SHORT).show();
             }
         });
     }

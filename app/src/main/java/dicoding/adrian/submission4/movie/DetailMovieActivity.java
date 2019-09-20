@@ -1,7 +1,10 @@
 package dicoding.adrian.submission4.movie;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.annotation.Nullable;
 
 import android.support.v7.app.AppCompatActivity;
@@ -22,8 +25,15 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
-import dicoding.adrian.submission4.favorite.MovieFavorite.Database.MovieHelper;
 import dicoding.adrian.submission4.R;
+
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.BACKDROP;
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.CONTENT_URI;
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.OVERVIEW;
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.POSTER;
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.RELEASED;
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.SCORE;
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.TITLE;
 
 public class DetailMovieActivity extends AppCompatActivity {
 
@@ -31,21 +41,12 @@ public class DetailMovieActivity extends AppCompatActivity {
     public static final int REQUEST_ADD = 100;
     public static final int RESULT_ADD = 101;
 
-    // isEdit Declaration
-    private boolean isEdit = false;
-
     /// Position Variable
     private int position;
 
     // Default Values
     public static final String EXTRA_MOVIE = "extra_movie";
     public static final String EXTRA_POSITION = "extra_position";
-
-    // Database Declaration
-    private MovieHelper movieHelper;
-
-    // Adaoter Declaration
-    MovieAdapter adapter;
 
     // Instance Movie Items
     private MovieItems movie;
@@ -63,14 +64,6 @@ public class DetailMovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
-
-        // Movie Helper Instance
-        movieHelper = MovieHelper.getInstance(getApplicationContext());
-        movieHelper.open();
-
-        // Adapter Instance
-        adapter = new MovieAdapter();
-        adapter.notifyDataSetChanged();
 
         // Translucent Status Bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -91,9 +84,20 @@ public class DetailMovieActivity extends AppCompatActivity {
 
         // Menerima Intent Movie dan Positon
         movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
-        position = getIntent().getIntExtra(EXTRA_POSITION, 0);
-        if (position > 0) {
-            isEdit = true;
+        if (movie != null) {
+            position = getIntent().getIntExtra(EXTRA_POSITION, 0);
+        } else {
+            movie = new MovieItems();
+        }
+
+        Uri uri = getIntent().getData();
+
+        if (uri != null) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) movie = new MovieItems(cursor);
+                cursor.close();
+            }
         }
 
         // Mengisi data String
@@ -136,16 +140,21 @@ public class DetailMovieActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.putExtra(EXTRA_MOVIE, movie);
                 intent.putExtra(EXTRA_POSITION, position);
-                if (isEdit) {
-                    String failedLike = getString(R.string.FailedLike);
-                    Toast.makeText(DetailMovieActivity.this, failedLike, Toast.LENGTH_SHORT).show();
-                } else {
-                    String successLike = getString(R.string.like);
-                    long result = movieHelper.insertMovie(movie);
-                    movie.setId((int) result);
-                    setResult(RESULT_ADD, intent);
-                    Toast.makeText(DetailMovieActivity.this, successLike, Toast.LENGTH_SHORT).show();
-                }
+
+                ContentValues values = new ContentValues();
+                values.put(TITLE, movie.getTitle());
+                values.put(POSTER, movie.getPoster());
+                values.put(OVERVIEW, movie.getOverview());
+                values.put(SCORE, movie.getScore());
+                values.put(RELEASED, movie.getReleased());
+                values.put(BACKDROP, movie.getBackdrop());
+
+                setResult(RESULT_ADD, intent);
+
+                getContentResolver().insert(CONTENT_URI, values);
+
+                String successLike = getString(R.string.like);
+                Toast.makeText(DetailMovieActivity.this, successLike, Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -3,6 +3,7 @@ package dicoding.adrian.submission4.favorite.MovieFavorite.Adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -27,10 +28,11 @@ import dicoding.adrian.submission4.favorite.MovieFavorite.DetailMovieFavoriteAct
 import dicoding.adrian.submission4.movie.MovieItems;
 import dicoding.adrian.submission4.R;
 
+import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.CONTENT_URI;
+
 public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdapter.MovieFavoriteViewHolder> {
 
     private ArrayList<MovieItems> listMovies = new ArrayList<>();
-
     private Activity activity;
 
     public MovieFavoriteAdapter(Activity activity) {
@@ -71,11 +73,11 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
     public void onBindViewHolder(@NonNull final MovieFavoriteAdapter.MovieFavoriteViewHolder holder, int position) {
 
         // String value
-        double score = listMovies.get(position).getScore() * 10;
+        double score = getListMovies().get(position).getScore() * 10;
         holder.tvScore.setText(String.valueOf((int) score));
 
         // Image Value
-        String uri = "https://image.tmdb.org/t/p/original" + listMovies.get(position).getPoster();
+        String uri = "https://image.tmdb.org/t/p/original" + getListMovies().get(position).getPoster();
         Glide.with(holder.itemView.getContext())
                 .load(uri)
                 .listener(new RequestListener<Drawable>() {
@@ -98,6 +100,10 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
             public void onItemClicked(View view, int position) {
                 // Define and Start Intent
                 Intent intent = new Intent(activity, DetailMovieFavoriteActivity.class);
+
+                Uri uri = Uri.parse(CONTENT_URI + "/" + getListMovies().get(position).getId());
+                intent.setData(uri);
+
                 intent.putExtra(DetailMovieFavoriteActivity.EXTRA_POSITION, position);
                 intent.putExtra(DetailMovieFavoriteActivity.EXTRA_MOVIE, listMovies.get(position));
                 activity.startActivityForResult(intent, DetailMovieFavoriteActivity.REQUEST_UPDATE);
