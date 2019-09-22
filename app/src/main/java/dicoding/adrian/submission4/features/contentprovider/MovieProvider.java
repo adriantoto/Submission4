@@ -106,7 +106,7 @@ public class MovieProvider extends ContentProvider {
                 updated = 0;
                 break;
         }
-        getContext().getContentResolver().notifyChange(CONTENT_URI, null);
+        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(CONTENT_URI, null);
         return updated;
     }
 }
