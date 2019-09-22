@@ -105,7 +105,7 @@ public class DetailMovieActivity extends AppCompatActivity {
         // Mengisi data String
         txtTitleDetail.setText(movie.getTitle());
         txtOverviewDetail.setText(movie.getOverview().trim());
-        String released = (movie.getReleased()).substring(0,4);
+        String released = (movie.getReleased()).substring(0, 4);
         txtReleasedDetail.setText(released);
         double score = movie.getScore() * 10;
         scoreDetail.setRating((float) ((score * 5) / 100));
