@@ -1,12 +1,12 @@
-package dicoding.adrian.submission4.favorite.TvFavorite.Database;
+package dicoding.adrian.submission4.favorite.moviefavorite.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHelperTv extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static String DATABASE_NAME = "dbtvapp";
+    private static String DATABASE_NAME = "dbmovieapp";
 
     private static final int DATABASE_VERSION = 1;
 
@@ -18,17 +18,17 @@ public class DatabaseHelperTv extends SQLiteOpenHelper {
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL," +
                     " %s TEXT NOT NULL)",
-            DatabaseContractTv.TABLE_TV,
-            DatabaseContractTv.TvColumns._ID,
-            DatabaseContractTv.TvColumns.TITLE_TV,
-            DatabaseContractTv.TvColumns.POSTER_TV,
-            DatabaseContractTv.TvColumns.BACKDROP_TV,
-            DatabaseContractTv.TvColumns.OVERVIEW_TV,
-            DatabaseContractTv.TvColumns.RELEASED_TV,
-            DatabaseContractTv.TvColumns.SCORE_TV
+            DatabaseContract.MovieColumns.TABLE_MOVIE,
+            DatabaseContract.MovieColumns._ID,
+            DatabaseContract.MovieColumns.TITLE,
+            DatabaseContract.MovieColumns.POSTER,
+            DatabaseContract.MovieColumns.OVERVIEW,
+            DatabaseContract.MovieColumns.RELEASED,
+            DatabaseContract.MovieColumns.SCORE,
+            DatabaseContract.MovieColumns.BACKDROP
     );
 
-    DatabaseHelperTv(Context context) {
+    DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -39,7 +39,7 @@ public class DatabaseHelperTv extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + DatabaseContractTv.TABLE_TV);
+        db.execSQL("DROP TABLE IF EXISTS " + DatabaseContract.MovieColumns.TABLE_MOVIE);
         onCreate(db);
     }
 }

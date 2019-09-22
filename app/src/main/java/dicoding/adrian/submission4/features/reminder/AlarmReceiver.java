@@ -22,7 +22,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import dicoding.adrian.submission4.R;
-import dicoding.adrian.submission4.basic.SplashRightActivity;
+import dicoding.adrian.submission4.main.SplashRightActivity;
 
 public class AlarmReceiver extends BroadcastReceiver {
 

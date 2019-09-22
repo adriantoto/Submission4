@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.favorite.TvFavorite.Database;
+package dicoding.adrian.submission4.favorite.tvfavorite.database;
 
 import android.provider.BaseColumns;
 

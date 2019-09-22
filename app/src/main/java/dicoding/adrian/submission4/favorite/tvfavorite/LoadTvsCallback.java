@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.favorite.TvFavorite;
+package dicoding.adrian.submission4.favorite.tvfavorite;
 
 import java.util.ArrayList;
 

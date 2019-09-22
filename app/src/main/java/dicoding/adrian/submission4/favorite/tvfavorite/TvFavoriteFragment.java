@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.favorite.TvFavorite;
+package dicoding.adrian.submission4.favorite.tvfavorite;
 
 
 import android.content.Intent;
@@ -19,8 +19,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import dicoding.adrian.submission4.favorite.TvFavorite.Adapter.TvFavoriteAdapter;
-import dicoding.adrian.submission4.favorite.TvFavorite.Database.TvHelper;
+import dicoding.adrian.submission4.favorite.tvfavorite.adapter.TvFavoriteAdapter;
+import dicoding.adrian.submission4.favorite.tvfavorite.database.TvHelper;
 import dicoding.adrian.submission4.R;
 import dicoding.adrian.submission4.tv.DetailTvActivity;
 import dicoding.adrian.submission4.tv.TvItems;

@@ -18,7 +18,7 @@ import dicoding.adrian.submission4.R;
 import dicoding.adrian.submission4.features.contentprovider.MappingHelper;
 import dicoding.adrian.submission4.movie.MovieItems;
 
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.CONTENT_URI;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.CONTENT_URI;
 
 public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 

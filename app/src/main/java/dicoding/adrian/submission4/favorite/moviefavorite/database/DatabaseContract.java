@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.favorite.MovieFavorite.Database;
+package dicoding.adrian.submission4.favorite.moviefavorite.database;
 
 import android.database.Cursor;
 import android.net.Uri;

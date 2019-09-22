@@ -33,7 +33,7 @@
 
         <activity android:name=".features.reminder.ReminderActivity" />
         <activity
-            android:name=".basic.SplashRightActivity"
+            android:name=".main.SplashRightActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,13 +41,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".favorite.TvFavorite.DetailTvFavoriteActivity" />
-        <activity android:name=".favorite.MovieFavorite.DetailMovieFavoriteActivity" />
+        <activity android:name=".favorite.tvfavorite.DetailTvFavoriteActivity" />
+        <activity android:name=".favorite.moviefavorite.DetailMovieFavoriteActivity" />
         <activity android:name=".tv.DetailTvActivity" />
         <activity android:name=".movie.DetailMovieActivity" />
-        <activity android:name=".basic.SplashActivity" />
+        <activity android:name=".main.SplashActivity" />
         <activity
-            android:name=".basic.MainActivity"
+            android:name=".main.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <receiver

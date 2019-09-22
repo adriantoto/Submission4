@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.favorite.MovieFavorite;
+package dicoding.adrian.submission4.favorite.moviefavorite;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -26,16 +26,16 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.Objects;
 
-import dicoding.adrian.submission4.basic.MainActivity;
+import dicoding.adrian.submission4.main.MainActivity;
 import dicoding.adrian.submission4.movie.MovieItems;
 import dicoding.adrian.submission4.R;
 
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.BACKDROP;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.OVERVIEW;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.POSTER;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.RELEASED;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.SCORE;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.TITLE;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.BACKDROP;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.OVERVIEW;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.POSTER;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.RELEASED;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.SCORE;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.TITLE;
 
 public class DetailMovieFavoriteActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.favorite.MovieFavorite.Database;
+package dicoding.adrian.submission4.favorite.moviefavorite.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import static android.provider.BaseColumns._ID;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.TABLE_MOVIE;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.TABLE_MOVIE;
 
 public class MovieHelper {
 

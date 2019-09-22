@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.favorite.TvFavorite.Database;
+package dicoding.adrian.submission4.favorite.tvfavorite.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,13 +13,13 @@ import dicoding.adrian.submission4.tv.TvItems;
 
 import static android.provider.BaseColumns._ID;
 
-import static dicoding.adrian.submission4.favorite.TvFavorite.Database.DatabaseContractTv.TABLE_TV;
-import static dicoding.adrian.submission4.favorite.TvFavorite.Database.DatabaseContractTv.TvColumns.BACKDROP_TV;
-import static dicoding.adrian.submission4.favorite.TvFavorite.Database.DatabaseContractTv.TvColumns.OVERVIEW_TV;
-import static dicoding.adrian.submission4.favorite.TvFavorite.Database.DatabaseContractTv.TvColumns.POSTER_TV;
-import static dicoding.adrian.submission4.favorite.TvFavorite.Database.DatabaseContractTv.TvColumns.RELEASED_TV;
-import static dicoding.adrian.submission4.favorite.TvFavorite.Database.DatabaseContractTv.TvColumns.SCORE_TV;
-import static dicoding.adrian.submission4.favorite.TvFavorite.Database.DatabaseContractTv.TvColumns.TITLE_TV;
+import static dicoding.adrian.submission4.favorite.tvfavorite.database.DatabaseContractTv.TABLE_TV;
+import static dicoding.adrian.submission4.favorite.tvfavorite.database.DatabaseContractTv.TvColumns.BACKDROP_TV;
+import static dicoding.adrian.submission4.favorite.tvfavorite.database.DatabaseContractTv.TvColumns.OVERVIEW_TV;
+import static dicoding.adrian.submission4.favorite.tvfavorite.database.DatabaseContractTv.TvColumns.POSTER_TV;
+import static dicoding.adrian.submission4.favorite.tvfavorite.database.DatabaseContractTv.TvColumns.RELEASED_TV;
+import static dicoding.adrian.submission4.favorite.tvfavorite.database.DatabaseContractTv.TvColumns.SCORE_TV;
+import static dicoding.adrian.submission4.favorite.tvfavorite.database.DatabaseContractTv.TvColumns.TITLE_TV;
 
 public class TvHelper {
 

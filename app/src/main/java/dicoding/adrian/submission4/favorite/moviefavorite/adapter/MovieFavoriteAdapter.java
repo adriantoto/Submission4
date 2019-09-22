@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.favorite.MovieFavorite.Adapter;
+package dicoding.adrian.submission4.favorite.moviefavorite.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,26 +23,32 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
-import dicoding.adrian.submission4.basic.CustomOnItemClickListener;
-import dicoding.adrian.submission4.favorite.MovieFavorite.DetailMovieFavoriteActivity;
+import dicoding.adrian.submission4.main.CustomOnItemClickListener;
+import dicoding.adrian.submission4.favorite.moviefavorite.DetailMovieFavoriteActivity;
 import dicoding.adrian.submission4.movie.MovieItems;
 import dicoding.adrian.submission4.R;
 
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.CONTENT_URI;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.CONTENT_URI;
 
 public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdapter.MovieFavoriteViewHolder> {
 
+    // Array for list movies
     private ArrayList<MovieItems> listMovies = new ArrayList<>();
+
+    // Context
     private Activity activity;
 
+    // Adapter Constructor
     public MovieFavoriteAdapter(Activity activity) {
         this.activity = activity;
     }
 
+    // getListMovies Method
     public ArrayList<MovieItems> getListMovies() {
         return listMovies;
     }
 
+    // setListMovie Method
     public void setListMovie(ArrayList<MovieItems> listMovies) {
         if (listMovies.size() > 0) {
             this.listMovies.clear();
@@ -51,11 +57,12 @@ public class MovieFavoriteAdapter extends RecyclerView.Adapter<MovieFavoriteAdap
         notifyDataSetChanged();
     }
 
+    // add item Method
     public void addItem(MovieItems movieItems) {
         this.listMovies.add(movieItems);
         notifyItemInserted(listMovies.size() - 1);
     }
-
+    // remove item Method
     public void removeItem(int position) {
         this.listMovies.remove(position);
         notifyItemRemoved(position);

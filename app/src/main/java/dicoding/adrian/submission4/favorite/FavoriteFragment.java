@@ -15,8 +15,8 @@ import android.view.ViewGroup;
 
 import java.util.Objects;
 
-import dicoding.adrian.submission4.favorite.MovieFavorite.MovieFavoriteFragment;
-import dicoding.adrian.submission4.favorite.TvFavorite.TvFavoriteFragment;
+import dicoding.adrian.submission4.favorite.moviefavorite.MovieFavoriteFragment;
+import dicoding.adrian.submission4.favorite.tvfavorite.TvFavoriteFragment;
 import dicoding.adrian.submission4.R;
 
 /**

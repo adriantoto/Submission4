@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.favorite.TvFavorite;
+package dicoding.adrian.submission4.favorite.tvfavorite;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -21,8 +21,8 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
-import dicoding.adrian.submission4.favorite.TvFavorite.Database.TvHelper;
-import dicoding.adrian.submission4.basic.MainActivity;
+import dicoding.adrian.submission4.favorite.tvfavorite.database.TvHelper;
+import dicoding.adrian.submission4.main.MainActivity;
 import dicoding.adrian.submission4.R;
 import dicoding.adrian.submission4.tv.TvAdapter;
 import dicoding.adrian.submission4.tv.TvItems;

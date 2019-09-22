@@ -6,7 +6,7 @@ import android.os.Parcelable;
 
 import org.json.JSONObject;
 
-import dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract;
+import dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract;
 
 import static android.provider.BaseColumns._ID;
 

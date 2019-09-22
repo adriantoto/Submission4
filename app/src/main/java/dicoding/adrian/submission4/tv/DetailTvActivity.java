@@ -21,7 +21,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
-import dicoding.adrian.submission4.favorite.TvFavorite.Database.TvHelper;
+import dicoding.adrian.submission4.favorite.tvfavorite.database.TvHelper;
 import dicoding.adrian.submission4.R;
 
 public class DetailTvActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.favorite.MovieFavorite;
+package dicoding.adrian.submission4.favorite.moviefavorite;
 
 import android.database.Cursor;
 

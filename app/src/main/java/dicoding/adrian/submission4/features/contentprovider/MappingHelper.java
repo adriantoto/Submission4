@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import dicoding.adrian.submission4.movie.MovieItems;
 
 import static android.provider.BaseColumns._ID;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.BACKDROP;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.OVERVIEW;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.POSTER;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.RELEASED;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.SCORE;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.TITLE;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.BACKDROP;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.OVERVIEW;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.POSTER;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.RELEASED;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.SCORE;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.TITLE;
 
 public class MappingHelper {
 

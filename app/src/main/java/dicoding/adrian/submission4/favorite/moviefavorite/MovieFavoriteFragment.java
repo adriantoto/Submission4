@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.favorite.MovieFavorite;
+package dicoding.adrian.submission4.favorite.moviefavorite;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,13 +21,13 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import dicoding.adrian.submission4.favorite.MovieFavorite.Adapter.MovieFavoriteAdapter;
+import dicoding.adrian.submission4.favorite.moviefavorite.adapter.MovieFavoriteAdapter;
 import dicoding.adrian.submission4.features.contentprovider.MappingHelper;
 import dicoding.adrian.submission4.movie.DetailMovieActivity;
 import dicoding.adrian.submission4.movie.MovieItems;
 import dicoding.adrian.submission4.R;
 
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.CONTENT_URI;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.CONTENT_URI;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -10,10 +10,10 @@ import android.support.annotation.Nullable;
 
 import java.util.Objects;
 
-import dicoding.adrian.submission4.favorite.MovieFavorite.Database.MovieHelper;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.AUTHORITY;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.CONTENT_URI;
-import static dicoding.adrian.submission4.favorite.MovieFavorite.Database.DatabaseContract.MovieColumns.TABLE_MOVIE;
+import dicoding.adrian.submission4.favorite.moviefavorite.database.MovieHelper;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.AUTHORITY;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.CONTENT_URI;
+import static dicoding.adrian.submission4.favorite.moviefavorite.database.DatabaseContract.MovieColumns.TABLE_MOVIE;
 
 
 public class MovieProvider extends ContentProvider {
@@ -24,9 +24,7 @@ public class MovieProvider extends ContentProvider {
     private MovieHelper movieHelper;
 
     static {
-        // content://com.dicoding.picodiploma.mynotesapp/note
         sUriMatcher.addURI(AUTHORITY, TABLE_MOVIE, MOVIE);
-        // content://com.dicoding.picodiploma.mynotesapp/note/id
         sUriMatcher.addURI(AUTHORITY, TABLE_MOVIE + "/#", MOVIE_ID);
     }
 

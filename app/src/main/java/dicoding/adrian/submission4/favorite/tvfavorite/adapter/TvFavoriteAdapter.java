@@ -1,4 +1,4 @@
-package dicoding.adrian.submission4.favorite.TvFavorite.Adapter;
+package dicoding.adrian.submission4.favorite.tvfavorite.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,9 +22,9 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
-import dicoding.adrian.submission4.basic.CustomOnItemClickListener;
+import dicoding.adrian.submission4.main.CustomOnItemClickListener;
 
-import dicoding.adrian.submission4.favorite.TvFavorite.DetailTvFavoriteActivity;
+import dicoding.adrian.submission4.favorite.tvfavorite.DetailTvFavoriteActivity;
 import dicoding.adrian.submission4.R;
 import dicoding.adrian.submission4.tv.TvItems;
 

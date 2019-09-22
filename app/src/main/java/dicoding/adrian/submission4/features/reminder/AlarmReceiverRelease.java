@@ -27,7 +27,7 @@ import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 import dicoding.adrian.submission4.R;
-import dicoding.adrian.submission4.basic.SplashRightActivity;
+import dicoding.adrian.submission4.main.SplashRightActivity;
 
 public class AlarmReceiverRelease extends BroadcastReceiver {
 
