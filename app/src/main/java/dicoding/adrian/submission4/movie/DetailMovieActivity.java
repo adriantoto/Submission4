@@ -55,6 +55,7 @@ public class DetailMovieActivity extends AppCompatActivity {
     // Widget Variables Declaration
     TextView txtTitleDetail;
     TextView txtOverviewDetail;
+    TextView txtReleasedDetail;
     ImageView posterBanner;
     Button btnLike;
     ImageButton btnBack;
@@ -72,6 +73,7 @@ public class DetailMovieActivity extends AppCompatActivity {
         // Casting Data Variables
         txtTitleDetail = findViewById(R.id.txt_title_detail);
         txtOverviewDetail = findViewById(R.id.txt_overviewDetail);
+        txtReleasedDetail = findViewById(R.id.txt_released_detailMovie);
         posterBanner = findViewById(R.id.poster_banner);
         scoreDetail = findViewById(R.id.score_detail_movie);
 
@@ -103,7 +105,9 @@ public class DetailMovieActivity extends AppCompatActivity {
 
         // Mengisi data String
         txtTitleDetail.setText(movie.getTitle());
-        txtOverviewDetail.setText(movie.getOverview());
+        txtOverviewDetail.setText(movie.getOverview().trim());
+        String released = (movie.getReleased()).substring(0,4);
+        txtReleasedDetail.setText(released);
         double score = movie.getScore() * 10;
         scoreDetail.setRating((float) ((score * 5) / 100));
 

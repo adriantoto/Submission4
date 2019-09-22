@@ -51,6 +51,7 @@ public class DetailTvActivity extends AppCompatActivity {
 
     // Data Variables Declaration
     TextView txtTitleDetail;
+    TextView txtReleasedDetail;
     TextView txtOverviewDetail;
     ImageView posterBanner;
     Button btnLike;
@@ -77,6 +78,7 @@ public class DetailTvActivity extends AppCompatActivity {
         // Casting Data Variables
         txtTitleDetail = findViewById(R.id.txt_title_detail_tv);
         txtOverviewDetail = findViewById(R.id.txt_overviewDetail_tv);
+        txtReleasedDetail = findViewById(R.id.txt_released_detailTv);
         posterBanner = findViewById(R.id.poster_banner_tv);
         scoreDetail = findViewById(R.id.score_detail_tv);
 
@@ -97,8 +99,10 @@ public class DetailTvActivity extends AppCompatActivity {
 
         // Mengisi data String
         txtTitleDetail.setText(tv.getTitle());
-        txtOverviewDetail.setText(tv.getOverview());
+        txtOverviewDetail.setText(tv.getOverview().trim());
         double score = tv.getScore() * 10;
+        String released = (tv.getReleased()).substring(0,4);
+        txtReleasedDetail.setText(released);
         scoreDetail.setRating((float) ((score * 5) / 100));
 
         // Mengisi data image
